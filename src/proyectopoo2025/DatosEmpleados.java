@@ -4,6 +4,9 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionEmpleados;
+import Model.Empleado;
+
 /**
  *
  * @author Usuario
@@ -11,11 +14,14 @@ package proyectopoo2025;
 public class DatosEmpleados extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DatosEmpleados.class.getName());
-
+    private GestionEmpleados gestion;
+    private GestorEmpleados gestor;
     /**
      * Creates new form NewJFrame
      */
-    public DatosEmpleados() {
+    public DatosEmpleados(GestionEmpleados gestion, GestorEmpleados gestor) {
+        this.gestion = gestion;
+        this.gestor = gestor;
         initComponents();
     }
 
@@ -153,7 +159,30 @@ public class DatosEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String nom = jTextField1.getText();
+        String ape = jTextField2.getText();
+        String dniVal = jTextField3.getText();
+        String rolSel = jComboBox1.getSelectedItem().toString();
+        String tel = jTextField4.getText();
+        String esp = jTextField5.getText();
+        
+        Empleado emp = null;
+        switch (rolSel) {
+        case "Médico":
+            emp = new Empleado(dniVal, nom, ape, tel, rolSel) {};
+            break;
+
+        default:
+            emp = new Empleado(dniVal, nom, ape, tel, rolSel) {};
+            break;
+            
+        }
+
+
+    gestion.agregarEmpleado(emp);
+    gestor.cargarTabla();
+    gestor.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -182,7 +211,8 @@ public class DatosEmpleados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DatosEmpleados().setVisible(true));
+        GestionEmpleados gestion = new GestionEmpleados();
+        new GestorEmpleados(gestion).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

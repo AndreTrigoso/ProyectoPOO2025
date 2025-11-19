@@ -4,21 +4,51 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionEmpleados;
+import Model.Empleado;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Usuario
  */
 public class GestorEmpleados extends javax.swing.JFrame {
-    
+    private GestionEmpleados gestion;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
+    
 
     /**
      * Creates new form GestorEmpleados
      */
-    public GestorEmpleados() {
+    public GestorEmpleados(GestionEmpleados gestion) {
+        this.gestion = gestion;
         initComponents();
+        cargarTabla();
     }
 
+
+    public void cargarTabla() {
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); // limpia la tabla
+
+    // si gestion es null, nada que mostrar
+    if (gestion == null) return;
+
+    Empleado[] lista = gestion.getLista();
+    int n = gestion.getNumEmpleados();
+
+    for (int i = 0; i < n; i++) {
+        Empleado e = lista[i];
+        if (e == null) continue; // por seguridad
+        modelo.addRow(new Object[]{
+            e.getNombre(),
+            e.getApellido(),
+            e.getRol(),
+            e.getTelefono()
+        });
+    }
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,8 +87,18 @@ public class GestorEmpleados extends javax.swing.JFrame {
         });
 
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,8 +133,36 @@ public class GestorEmpleados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        DatosEmpleados ventana = new DatosEmpleados(gestion);
+        ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un empleado");
+            return;
+        }
+
+        DatosEmpleados ventana = new DatosEmpleados(gestion);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int fila = jTable1.getSelectedRow();
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this, "Selecciona un empleado");
+        return;
+        }
+    String dni = gestion.getLista()[fila].getDni();
+
+    if (gestion.eliminarEmpleado(dni)) {
+        JOptionPane.showMessageDialog(this, "Empleado eliminado");
+        cargarTabla();
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al eliminar");
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +186,8 @@ public class GestorEmpleados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GestorEmpleados().setVisible(true));
+        GestionEmpleados gestion = new GestionEmpleados();
+        new GestorEmpleados(gestion).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

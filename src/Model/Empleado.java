@@ -22,6 +22,8 @@ public abstract class Empleado {
         this.telefono = telefono;
         this.rol = rol;
     }
+    
+    
 
     // GETTERS
     public String getDni() { return dni; }
