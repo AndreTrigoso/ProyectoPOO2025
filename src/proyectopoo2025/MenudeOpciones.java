@@ -18,6 +18,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
      * Creates new form MenudeOpciones
      */
     public MenudeOpciones(Usuario user) {
+        initComponents();
         switch (user.getRoles()){
             case "Administrador":
                 this.miConsultas.setEnabled(true);
@@ -41,7 +42,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 this.miReportes.setEnabled(false);
                 break;
         }
-        initComponents();
+        
     }
 
     /**
