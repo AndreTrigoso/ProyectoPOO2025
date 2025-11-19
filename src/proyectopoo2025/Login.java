@@ -50,10 +50,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
-        jPasswordField1.setText("jPasswordField1");
-
-        jTextField1.setText("jTextField1");
-
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
