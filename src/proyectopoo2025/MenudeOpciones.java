@@ -4,6 +4,7 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionPaciente;
 import Model.Usuario;
 
 /**
@@ -11,8 +12,10 @@ import Model.Usuario;
  * @author Usuario
  */
 public class MenudeOpciones extends javax.swing.JFrame {
+  
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
+    
 
     /**
      * Creates new form MenudeOpciones

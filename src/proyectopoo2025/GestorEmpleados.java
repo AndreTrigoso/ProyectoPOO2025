@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class GestorEmpleados extends javax.swing.JFrame {
     private GestionEmpleados gestion;
+    private Empleado empleadoEditar;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
     
 
@@ -22,6 +23,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
      */
     public GestorEmpleados(GestionEmpleados gestion) {
         this.gestion = gestion;
+        this.empleadoEditar = empleadoEditar;
         initComponents();
         cargarTabla();
     }
@@ -133,7 +135,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DatosEmpleados ventana = new DatosEmpleados(gestion);
+        DatosEmpleados ventana = new DatosEmpleados(gestion , null);
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -143,8 +145,9 @@ public class GestorEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un empleado");
             return;
         }
+        Empleado emp = gestion.getLista()[fila];
 
-        DatosEmpleados ventana = new DatosEmpleados(gestion);
+        DatosEmpleados ventana = new DatosEmpleados(gestion ,emp);
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
