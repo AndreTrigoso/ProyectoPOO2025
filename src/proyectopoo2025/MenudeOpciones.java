@@ -4,6 +4,8 @@
  */
 package proyectopoo2025;
 
+import Model.Usuario;
+
 /**
  *
  * @author Usuario
@@ -15,7 +17,30 @@ public class MenudeOpciones extends javax.swing.JFrame {
     /**
      * Creates new form MenudeOpciones
      */
-    public MenudeOpciones() {
+    public MenudeOpciones(Usuario user) {
+        switch (user.getRoles()){
+            case "Administrador":
+                this.miConsultas.setEnabled(true);
+                this.miConsultorios.setEnabled(true);
+                this.miEmpleados.setEnabled(true);
+                this.miPacientes.setEnabled(true);
+                this.miReportes.setEnabled(true);
+                break;
+            case "Médico":
+                this.miConsultas.setEnabled(true);
+                this.miConsultorios.setEnabled(true);
+                this.miEmpleados.setEnabled(false);
+                this.miPacientes.setEnabled(false);
+                this.miReportes.setEnabled(false);
+                break;
+            case "Enfermero":
+                this.miConsultas.setEnabled(false);
+                this.miConsultorios.setEnabled(true);
+                this.miEmpleados.setEnabled(false);
+                this.miPacientes.setEnabled(true);
+                this.miReportes.setEnabled(false);
+                break;
+        }
         initComponents();
     }
 
@@ -36,8 +61,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         miConsultas = new javax.swing.JMenuItem();
         miPacientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("File");
 
@@ -99,7 +122,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
