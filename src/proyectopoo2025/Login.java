@@ -26,8 +26,8 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         usuarios = new GestorUsuarios();
         usuarios.agregarUsuario("admin", "xd", "Administrador");
-        usuarios.agregarUsuario("medico", "xdd", "Medico");
-        usuarios.agregarUsuario("enfermera", "xddd", "Enfermera");
+        usuarios.agregarUsuario("medico", "xdd", "Médico");
+        usuarios.agregarUsuario("enfermera", "xddd", "Enfermero");
     }
 
     /**
