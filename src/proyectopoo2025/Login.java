@@ -105,7 +105,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        Usuario x = this.usuarios.validarUsuario(this.jTextField1.getText(),this.jPasswordField1.getText() );
-       MenudeOpciones menu = new MenudeOpciones();
+       MenudeOpciones menu = new MenudeOpciones(x);
        menu.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
