@@ -122,7 +122,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
