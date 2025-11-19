@@ -11,10 +11,11 @@ package Model;
 public class Medico extends Empleado {
     private String especialidad;
 
-    public Medico(String especialidad, String dni, String nombre, String apellido, String telefono, String rol) {
-        super(dni, nombre, apellido, telefono, rol);
-        this.especialidad = especialidad;
+    public Medico(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+        super(DNI, Nombres, Apellidos, Rol, Especialidad, Telefono, Correo);
     }
+
+    
 
     public String getEspecialidad() { return especialidad; }
     public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }

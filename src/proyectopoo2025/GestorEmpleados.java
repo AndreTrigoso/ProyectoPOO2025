@@ -4,53 +4,32 @@
  */
 package proyectopoo2025;
 
+import proyectopoo2025.DatosEmpleados;
 import Controller.GestionEmpleados;
 import Model.Empleado;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Usuario
+ * @author diego
  */
 public class GestorEmpleados extends javax.swing.JFrame {
-    private GestionEmpleados gestion;
-    private Empleado empleadoEditar;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
     
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
 
     /**
      * Creates new form GestorEmpleados
      */
-    public GestorEmpleados(GestionEmpleados gestion) {
-        this.gestion = gestion;
-        this.empleadoEditar = empleadoEditar;
-        initComponents();
-        cargarTabla();
-    }
-
-
-    public void cargarTabla() {
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); // limpia la tabla
-
-    // si gestion es null, nada que mostrar
-    if (gestion == null) return;
-
-    Empleado[] lista = gestion.getLista();
-    int n = gestion.getNumEmpleados();
-
-    for (int i = 0; i < n; i++) {
-        Empleado e = lista[i];
-        if (e == null) continue; // por seguridad
-        modelo.addRow(new Object[]{
-            e.getNombre(),
-            e.getApellido(),
-            e.getRol(),
-            e.getTelefono()
-        });
-    }
-}
     
+    private GestionEmpleados gestor;
+    
+    public GestorEmpleados(GestionEmpleados gestor) {
+    initComponents();
+    this.gestor = gestor;   
+    cargarDatosATabla();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,45 +39,102 @@ public class GestorEmpleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<String>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbAgregar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
+
+        jLabel1.setText("DNI");
+
+        jTextField4.setEnabled(false);
+
+        jLabel6.setText("Teléfono");
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombres");
+
+        jLabel3.setText("Apellidos");
+
+        jLabel4.setText("Rol");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Recepcionistas", "Médicos", "Enfermeros(as)", "Cajeros", "Administradores" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Especialidad");
+
+        jLabel7.setText("Correo");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Rol", "Teléfono"
+                "DNI", "Nombres", "Apellidos", "Rol", "Especialidad", "Telefono", "Correo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbAgregarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbEliminarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbModificarActionPerformed(evt);
             }
         });
 
@@ -107,65 +143,71 @@ public class GestorEmpleados extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jButton1)
-                .addGap(74, 74, 74)
-                .addComponent(jButton2)
-                .addGap(74, 74, 74)
-                .addComponent(jButton3)
-                .addGap(0, 176, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jbAgregar)
+                        .addGap(59, 59, 59)
+                        .addComponent(jbModificar)
+                        .addGap(51, 51, 51)
+                        .addComponent(jbEliminar)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jbAgregar)
+                    .addComponent(jbEliminar)
+                    .addComponent(jbModificar))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DatosEmpleados ventana = new DatosEmpleados(gestion , null);
-        ventana.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int fila = jTable1.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un empleado");
-            return;
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        // TODO add your handling code here:
+        DatosEmpleados ventana = new DatosEmpleados(gestor);
+        ventana.setVisible(true); 
+        this.dispose();   
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        // TODO add your handling code here:
+         int fila = jTable1.getSelectedRow();
+         
+         int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este empleado?", "Confirmar",
+            JOptionPane.YES_NO_OPTION);
+         
+        if (confirmar == JOptionPane.YES_OPTION) {
+            gestor.eliminarEmpleado(fila);
+            cargarDatosATabla();
         }
-        Empleado emp = gestion.getLista()[fila];
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
-        DatosEmpleados ventana = new DatosEmpleados(gestion ,emp);
-        ventana.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
         int fila = jTable1.getSelectedRow();
-    if (fila == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona un empleado");
-        return;
-        }
-    String dni = gestion.getLista()[fila].getDni();
-
-    if (gestion.eliminarEmpleado(dni)) {
-        JOptionPane.showMessageDialog(this, "Empleado eliminado");
-        cargarTabla();
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al eliminar");
-    }
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+        DatosEmpleados ventana = new DatosEmpleados(gestor);
+        ventana.setVisible(true); 
+        this.dispose();
+    }//GEN-LAST:event_jbModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,15 +231,52 @@ public class GestorEmpleados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        GestionEmpleados gestion = new GestionEmpleados();
-        new GestorEmpleados(gestion).setVisible(true);
+        GestionEmpleados gestor = new GestionEmpleados();
+
+        java.awt.EventQueue.invokeLater(() -> {
+        new GestorEmpleados(gestor).setVisible(true);
+    });
     }
+    
+    private void cargarDatosATabla() {
+
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // limpiar
+
+    for (int i = 0; i < gestor.getNroEmpleados(); i++) {
+
+        Empleado emp = gestor.getEmpleados(i);
+
+        model.addRow(new Object[]{
+            emp.getDNI(),
+            emp.getNombres(),
+            emp.getApellidos(),
+            emp.getRol(),
+            emp.getEspecialidad(),
+            emp.getTelefono(),
+            emp.getCorreo()
+        });
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbModificar;
     // End of variables declaration//GEN-END:variables
 }

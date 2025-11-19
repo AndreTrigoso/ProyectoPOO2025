@@ -10,8 +10,10 @@ package Model;
  */
 public class Administrador extends Empleado {
 
-    public Administrador(String dni, String nombre, String apellido, String telefono, String rol) {
-        super(dni, nombre, apellido, telefono, rol);
+    public Administrador(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+        super(DNI, Nombres, Apellidos, Rol, Especialidad, Telefono, Correo);
     }
+
+    
     
 }

@@ -10,9 +10,11 @@ package Model;
  */
 public class Cajero extends Empleado {
 
-    public Cajero(String dni, String nombre, String apellido, String telefono, String rol) {
-        super(dni, nombre, apellido, telefono, rol);
+    public Cajero(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+        super(DNI, Nombres, Apellidos, Rol, Especialidad, Telefono, Correo);
     }
+
+   
     
     
 }

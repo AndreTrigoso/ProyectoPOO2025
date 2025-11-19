@@ -10,9 +10,10 @@ package Model;
  */
 public class Enfermero extends Empleado {
 
-    public Enfermero(String dni, String nombre, String apellido, String telefono, String rol) {
-        super(dni, nombre, apellido, telefono, rol);
+    public Enfermero(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+        super(DNI, Nombres, Apellidos, Rol, Especialidad, Telefono, Correo);
     }
+
     
     
 }

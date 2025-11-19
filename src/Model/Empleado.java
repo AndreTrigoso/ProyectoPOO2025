@@ -1,35 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
-/**
- *
- * @author Aidan
- */
-public abstract class Empleado {
-    protected String dni;
-    protected String nombre;
-    protected String apellido;
-    protected String telefono;
-    protected String rol;
+public class Empleado {
+    private String DNI;
+    private String Nombres;
+    private String Apellidos;
+    private String Rol;
+    private String Especialidad;
+    private String Telefono;
+    private String Correo;
 
-    public Empleado(String dni, String nombre, String apellido, String telefono,  String rol) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.rol = rol;
+    public Empleado(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+        this.DNI = DNI;
+        this.Nombres = Nombres;
+        this.Apellidos = Apellidos;
+        this.Rol = Rol;
+        this.Especialidad = Especialidad;
+        this.Telefono = Telefono;
+        this.Correo = Correo;
     }
-    
-    
 
-    // GETTERS
-    public String getDni() { return dni; }
-    public String getNombre() { return nombre; }
-    public String getApellido() { return apellido; }
-    public String getTelefono() { return telefono; }
-    public String getRol() { return rol; }
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getNombres() {
+        return Nombres;
+    }
+
+    public void setNombres(String Nombres) {
+        this.Nombres = Nombres;
+    }
+
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.Apellidos = Apellidos;
+    }
+
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String Rol) {
+        this.Rol = Rol;
+    }
+
+    public String getEspecialidad() {
+        return Especialidad;
+    }
+
+    public void setEspecialidad(String Especialidad) {
+        this.Especialidad = Especialidad;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
+    }
+
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public String verInfo() {
+        return "\nDNI: " + this.DNI 
+                + "\nNombres: " + this.Nombres 
+                + "\nApellidos: " + this.Apellidos 
+                + "\nRol=" + this.Rol 
+                + "\nEspecialidad: " + this.Especialidad 
+                + "\nTelefono: " + this.Telefono 
+                + "\nCorreo: " + this.Correo;
+    }
 }
 
