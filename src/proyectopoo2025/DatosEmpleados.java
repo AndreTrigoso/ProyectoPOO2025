@@ -21,8 +21,9 @@ public class DatosEmpleados extends javax.swing.JFrame {
     private GestionEmpleados gestor;
 
     public DatosEmpleados(GestionEmpleados gestor) {
-            initComponents();
             this.gestor = gestor;
+            initComponents();
+            
     }
 
     /**
@@ -219,7 +220,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
         tfTelefono.setText(" ");
         tfCorreo.setText(" ");
         
-        GestorEmpleados tabla = new GestorEmpleados(gestor);
+        GestorEmpleadosborrar tabla = new GestorEmpleadosborrar(gestor);
         tabla.setVisible(true);
         this.dispose();
         

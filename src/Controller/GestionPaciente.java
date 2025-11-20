@@ -19,13 +19,11 @@ public class GestionPaciente {
     }
 
   
-    public boolean agregarPaciente(Paciente p) {
-        if (numPacientes >= pacientes.length) return false; 
-        if (buscarPorDni(p.getDni()) != null) return false; 
-
-        pacientes[numPacientes] = p;
-        numPacientes++;
-        return true;
+    public void agregarPaciente(Paciente p) {
+        if(this.numPacientes<this.pacientes.length){
+            pacientes[this.numPacientes] = p;
+            this.numPacientes++;
+        }
     }
 
 
@@ -56,20 +54,48 @@ public class GestionPaciente {
         return false;
     }
 
-    public boolean modificarPaciente(Paciente nuevo) {
-        for (int i = 0; i < numPacientes; i++) {
-            if (pacientes[i].getDni().equals(nuevo.getDni())) {
-                pacientes[i] = nuevo;
-                return true;
-            }
-        }
-        return false;
+    public void modificarPaciente(int fila, String dni, String nombre, String apellido,
+                                  String fechaNac, String sexo, 
+                                  String telefono, String emergencia) {
+        
+        Paciente p = pacientes[fila];
+        p.setDni(dni);
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setFechaNacimiento(fechaNac);
+        p.setSexo(sexo);
+        p.setTelefono(telefono);
+        p.setTelefonoEmergencia(emergencia);
     }
 
   
-    public Paciente[] getLista() {
+     public void eliminarPaciente(int fila) {
+
+        for (int i = fila; i < this.numPacientes - 1; i++) {
+            pacientes[i] = pacientes[i + 1];
+        }
+
+        pacientes[this.numPacientes - 1] = null;
+        this.numPacientes--;
+    }
+
+    public Paciente[] getPacientes() {
         return pacientes;
     }
+
+    public void setPacientes(Paciente[] pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public int getNumPacientes() {
+        return numPacientes;
+    }
+
+    public void setNumPacientes(int numPacientes) {
+        this.numPacientes = numPacientes;
+    }
+     
+     
 }
 
     

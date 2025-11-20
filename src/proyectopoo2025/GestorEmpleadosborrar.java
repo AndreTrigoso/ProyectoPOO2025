@@ -4,8 +4,8 @@
  */
 package proyectopoo2025;
 
-import proyectopoo2025.DatosEmpleados;
 import Controller.GestionEmpleados;
+import proyectopoo2025.DatosEmpleados;
 import Model.Empleado;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,20 +14,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class GestorEmpleados extends javax.swing.JFrame {
+public class GestorEmpleadosborrar extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleadosborrar.class.getName());
 
     /**
-     * Creates new form GestorEmpleados
+     * Creates new form GestorEmpleadosborrar
      */
     
     private GestionEmpleados gestor;
     
-    public GestorEmpleados(GestionEmpleados gestor) {
-    initComponents();
-    this.gestor = gestor;   
-    cargarDatosATabla();
+    public GestorEmpleadosborrar(GestionEmpleados gestor) {
+        initComponents();
+        this.gestor = gestor;
+        cargarDatosATabla();
     }
 
     /**
@@ -46,7 +46,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -76,7 +76,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
 
         jLabel4.setText("Rol");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Recepcionistas", "Médicos", "Enfermeros(as)", "Cajeros", "Administradores" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionistas", "Médicos", "Enfermeros(as)", "Cajeros", "Administradores" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -234,8 +234,8 @@ public class GestorEmpleados extends javax.swing.JFrame {
         GestionEmpleados gestor = new GestionEmpleados();
 
         java.awt.EventQueue.invokeLater(() -> {
-        new GestorEmpleados(gestor).setVisible(true);
-    });
+            new DatosEmpleados(gestor).setVisible(true);
+        });
     }
     
     private void cargarDatosATabla() {

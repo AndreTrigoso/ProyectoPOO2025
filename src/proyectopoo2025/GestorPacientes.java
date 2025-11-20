@@ -1,20 +1,31 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package proyectopoo2025;
 
+import Controller.GestionPaciente;
+import Model.Paciente;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Controller.GestionPaciente;
 /**
  *
- * @author Aidan
+ * @author Usuario
  */
-public class GestorPacientes extends javax.swing.JPanel {
+public class GestorPacientes extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorPacientes.class.getName());
 
     /**
      * Creates new form GestorPacientes
      */
-    public GestorPacientes() {
+    private GestionPaciente gestor;
+    
+    public GestorPacientes(GestionPaciente gestor) {
+        this.gestor = gestor;
         initComponents();
+        cargarDatosATabla();
     }
 
     /**
@@ -26,75 +37,161 @@ public class GestorPacientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonModificar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Rol", "Teléfono"
+                "Nombre", "Apellido", "DNI", "Fecha Nacimiento", "Teléfono", "Teléfono Emergencia", "Contacto Emergencia"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAgregarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar");
-
-        jButton3.setText("Eliminar");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jButton1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAgregar)
                 .addGap(74, 74, 74)
-                .addComponent(jButton2)
+                .addComponent(botonModificar)
                 .addGap(74, 74, 74)
-                .addComponent(jButton3)
-                .addGap(0, 281, Short.MAX_VALUE))
+                .addComponent(botonEliminar)
+                .addGap(216, 216, 216))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(botonAgregar)
+                    .addComponent(botonModificar)
+                    .addComponent(botonEliminar))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este empleado?", "Confirmar",
+            JOptionPane.YES_NO_OPTION);
 
+        if (confirmar == JOptionPane.YES_OPTION) {
+            gestor.eliminarPaciente(fila);
+            cargarDatosATabla();
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+
+        DatosPacientes ventana = new DatosPacientes(gestor);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        DatosPacientes ventana = new DatosPacientes(gestor);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        GestionPaciente gestor = new GestionPaciente();
+        java.awt.EventQueue.invokeLater(() -> {new DatosPacientes(gestor).setVisible(true);
+        });
+        }
+                
+    
+    private void cargarDatosATabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for (int i = 0; i < gestor.getNumPacientes(); i++) {
+            Paciente p = gestor.getPacientes()[i];
+
+            modelo.addRow(new Object[]{
+                p.getDni(),
+                p.getNombre(),
+                p.getApellido(),
+                p.getFechaNacimiento(),
+                p.getSexo(),
+                p.getTelefono(),
+                p.getContactoEmergencia(),
+                p.getTelefonoEmergencia()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
