@@ -32,4 +32,9 @@ public class GestorUsuarios {
         }
         return null;
     }
+    
+    
+    public void mostrar(){
+        System.out.println("aaaa");
+    }
 }
