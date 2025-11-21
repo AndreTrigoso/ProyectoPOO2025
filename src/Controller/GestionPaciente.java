@@ -37,26 +37,18 @@ public class GestionPaciente {
     }
 
 
-    public boolean eliminarPaciente(String dni) {
-        for (int i = 0; i < numPacientes; i++) {
-            if (pacientes[i].getDni().equals(dni)) {
-
-                // correr posiciones
-                for (int j = i; j < numPacientes - 1; j++) {
-                    pacientes[j] = pacientes[j + 1];
-                }
-
-                pacientes[numPacientes - 1] = null;
-                numPacientes--;
-                return true;
-            }
+    public void eliminarPaciente() {
+        for (int i = 0; i < numPacientes - 1; i++) {
+            pacientes[i] = pacientes[i + 1];
         }
-        return false;
+
+        pacientes[numPacientes - 1] = null;
+        numPacientes--;
     }
 
     public void modificarPaciente(int fila, String dni, String nombre, String apellido,
                                   String fechaNac, String sexo, 
-                                  String telefono, String emergencia) {
+                                  String telefono, String emergencia, String contacto) {
         
         Paciente p = pacientes[fila];
         p.setDni(dni);
@@ -66,6 +58,7 @@ public class GestionPaciente {
         p.setSexo(sexo);
         p.setTelefono(telefono);
         p.setTelefonoEmergencia(emergencia);
+        p.setContactoEmergencia(contacto);
     }
 
   
@@ -95,7 +88,12 @@ public class GestionPaciente {
         this.numPacientes = numPacientes;
     }
      
+    public Paciente getPaciente(int i){
+        return pacientes[i];
+    }
      
+    
+    
 }
 
     

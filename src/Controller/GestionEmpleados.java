@@ -45,7 +45,7 @@ public class GestionEmpleados {
         emp.setCorreo(Correo);
     }
     
-    public void eliminarEmpleado(int fila) {
+    public void eliminarEmpleado() {
 
         for (int i = 0; i < nroEmpleados - 1; i++) {
             empleados[i] = empleados[i + 1];

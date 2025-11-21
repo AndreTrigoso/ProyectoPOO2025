@@ -4,27 +4,33 @@
  */
 package proyectopoo2025;
 
-
-import Model.Paciente;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import Controller.GestionPaciente;
-import proyectopoo2025.DatosPacientes;
 /**
  *
  * @author Usuario
  */
-public class GestorPacientes extends javax.swing.JFrame {
+
+import Controller.GestionCitas;
+import Controller.GestionPaciente;
+import Controller.GestionEmpleados;
+import Model.Cita;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+public class GestorCitas extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorPacientes.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorCitas.class.getName());
 
     /**
-     * Creates new form GestorPacientes
+     * Creates new form GestorCitas
      */
-    private GestionPaciente gestor;
-    
-    public GestorPacientes(GestionPaciente gestor) {
-        this.gestor = gestor;
+    private GestionCitas gestor;
+    private GestionPaciente gestorPacientes;
+    private GestionEmpleados gestorEmpleados;
+
+    public GestorCitas(GestionCitas gc, GestionPaciente gp, GestionEmpleados ge) {
+        this.gestor = gc;
+        this.gestorPacientes = gp;
+        this.gestorEmpleados = ge;
         initComponents();
         cargarDatosATabla();
     }
@@ -62,13 +68,19 @@ public class GestorPacientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "DNI", "Fecha Nacimiento", "Teléfono", "Teléfono Emergencia", "Contacto Emergencia"
+                "Codigo de Consultorio", "Modalidad", "Paciente", "Medico", "Fecha", "Hora"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -86,7 +98,7 @@ public class GestorPacientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonAgregar)
@@ -106,7 +118,7 @@ public class GestorPacientes extends javax.swing.JFrame {
                     .addComponent(botonAgregar)
                     .addComponent(botonModificar)
                     .addComponent(botonEliminar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,14 +129,14 @@ public class GestorPacientes extends javax.swing.JFrame {
         int fila = jTable1.getSelectedRow();
 
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione unn paciente");
+            JOptionPane.showMessageDialog(this, "Seleccione una cita");
             return;
         }
 
-        Paciente pac = gestor.getPaciente(fila);
+        Cita c = gestor.getCita(fila);
 
-        DatosPacientes ventana = new DatosPacientes(gestor);
-        ventana.setDatos(pac, fila);   
+        DatosCitas ventana = new DatosCitas(gestor,gestorPacientes,gestorEmpleados);
+        ventana.setDatos(c, fila);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonModificarActionPerformed
@@ -133,21 +145,41 @@ public class GestorPacientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         int fila = jTable1.getSelectedRow();
 
-        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este empleado?", "Confirmar",
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar esta cita?", "Confirmar",
             JOptionPane.YES_NO_OPTION);
 
         if (confirmar == JOptionPane.YES_OPTION) {
-            gestor.eliminarPaciente(fila);
+            gestor.eliminarCita(fila);
             cargarDatosATabla();
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        DatosPacientes ventana = new DatosPacientes(gestor);
+        DatosCitas ventana = new DatosCitas(gestor,gestorPacientes,gestorEmpleados);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+    
+    private void cargarDatosATabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for (int i = 0; i < gestor.getNumCitas(); i++) {
+            Cita c = gestor.getCitas()[i];
+
+            modelo.addRow(new Object[]{
+                c.getCodigoConsultorio(),
+                c.getModalidad(),
+                c.getMedico(),
+                c.getPaciente(),
+                c.getFecha(),
+                c.getHora(),
+                c.getEstado()
+            });
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -170,31 +202,10 @@ public class GestorPacientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        GestionPaciente gestor = new GestionPaciente();
-        java.awt.EventQueue.invokeLater(() -> {new DatosPacientes(gestor).setVisible(true);
-        });
-        }
-                
-    
-    private void cargarDatosATabla() {
-
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0);
-
-        for (int i = 0; i < gestor.getNumPacientes(); i++) {
-            Paciente p = gestor.getPacientes()[i];
-
-            modelo.addRow(new Object[]{
-                p.getDni(),
-                p.getNombre(),
-                p.getApellido(),
-                p.getFechaNacimiento(),
-                p.getSexo(),
-                p.getTelefono(),
-                p.getContactoEmergencia(),
-                p.getTelefonoEmergencia()
-            });
-        }
+        GestionCitas gc = new GestionCitas();
+        GestionPaciente gp = new GestionPaciente();
+        GestionEmpleados ge = new GestionEmpleados();
+        java.awt.EventQueue.invokeLater(() -> new GestorCitas(gc,gp,ge).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

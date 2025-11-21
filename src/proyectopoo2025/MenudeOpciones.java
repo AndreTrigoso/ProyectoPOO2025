@@ -4,6 +4,7 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionEmpleados;
 import Controller.GestionPaciente;
 import Model.Usuario;
 
@@ -13,7 +14,7 @@ import Model.Usuario;
  */
 public class MenudeOpciones extends javax.swing.JFrame {
   
-    
+    private GestionEmpleados gestor;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
     
 
@@ -22,6 +23,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
      */
     public MenudeOpciones(Usuario user) {
         initComponents();
+        gestor = new GestionEmpleados();
         switch (user.getRoles()){
             case "Administrador":
                 this.miConsultas.setEnabled(true);
@@ -69,6 +71,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         miEmpleados.setText("Empleados");
+        miEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEmpleadosActionPerformed(evt);
+            }
+        });
         jMenu1.add(miEmpleados);
 
         miConsultorios.setText("Consultorios");
@@ -103,6 +110,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEmpleadosActionPerformed
+
+        GestorEmpleados ventana = new GestorEmpleados(gestor);
+        ventana.setVisible(true); 
+         
+    }//GEN-LAST:event_miEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments

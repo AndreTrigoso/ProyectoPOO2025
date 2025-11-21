@@ -5,7 +5,9 @@
 package proyectopoo2025;
 
 import Controller.GestionEmpleados;
+import Model.Empleado;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -19,6 +21,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
      * Creates new form DatosEmpleados
      */
     private GestionEmpleados gestor;
+    private int indiceModificar = -1;
 
     public DatosEmpleados(GestionEmpleados gestor) {
             this.gestor = gestor;
@@ -194,8 +197,22 @@ public class DatosEmpleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbRolActionPerformed
 
+    public void setDatos(Empleado emp, int indice){
+        this.indiceModificar = indice;
+        this.tfDni.setText(emp.getDNI());
+        this.tfNombres.setText(emp.getNombres());
+        this.tfApellidos.setText(emp.getApellidos());
+        this.cbRol.setSelectedItem(emp.getRol());
+        this.tfEspecialidad.setText(emp.getEspecialidad());
+        this.tfTelefono.setText(emp.getTelefono());
+        this.tfCorreo.setText(emp.getCorreo());
+        
+    }
+    
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
         // TODO add your handling code here:
+        
+        
         String dni = tfDni.getText();
         String nombres = tfNombres.getText();
         String apellidos = tfApellidos.getText();
@@ -204,13 +221,26 @@ public class DatosEmpleados extends javax.swing.JFrame {
         String telefono = tfTelefono.getText();
         String correo = tfCorreo.getText();
         
+        if(dni.isEmpty() || nombres.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || correo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Complete todos los campos obligatorios");
+            return;
+        }
+        
+        if(indiceModificar == -1){
+        
+        
         if(gestor.usuarioExiste(dni)){
             JOptionPane.showMessageDialog(null, "El empleado con ese DNI ya existe");
+            return;
         }
         
         gestor.agregarEmpleado(dni, nombres, apellidos, rol, especialidad, telefono, correo);
         
-        JOptionPane.showMessageDialog(null, "Empleado registrado correctamente");
+        JOptionPane.showMessageDialog(null, "Empleado registrado correctamente");}else{
+            gestor.modificarEmpleado(indiceModificar, dni, nombres, apellidos, rol, especialidad, telefono, correo);
+            JOptionPane.showMessageDialog(null, "Empleado Modificado Correctamente");
+        
+        }
         
         tfDni.setText(" ");
         tfNombres.setText(" ");
@@ -220,7 +250,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
         tfTelefono.setText(" ");
         tfCorreo.setText(" ");
         
-        GestorEmpleadosborrar tabla = new GestorEmpleadosborrar(gestor);
+        GestorEmpleados tabla = new GestorEmpleados(gestor);
         tabla.setVisible(true);
         this.dispose();
         
