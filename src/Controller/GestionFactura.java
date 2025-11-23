@@ -27,18 +27,14 @@ public class GestionFactura {
         this.cantidad = cantidad;
     }
     
-    public boolean crearFactura(int numero, String descripcion, double monto) {
+    public void crearFactura(String numero, String descripcion, String monto) {
         if (cantidad < facturas.length) {
-            return false; 
-        }
-        
-        if (existeFactura(numero)) {
-            return false; 
-        }
+
 
         facturas[cantidad] = new Factura(numero, descripcion, monto);
         cantidad++;
-        return true;
+
+        }
     }
     
     public void eliminarFactura() {
@@ -50,16 +46,16 @@ public class GestionFactura {
         cantidad--;
     }
     
-    public boolean existeFactura(int numero) {
+    public boolean existeFactura(String numero) {
         for (int i = 0; i < cantidad; i++) {
-            if (facturas[i].getNumero() == numero) {
+            if (facturas[i].getNumero().equalsIgnoreCase(numero)) {
                 return true;
             }
         }
         return false;
     }
     
-    public void modificarFactura(int fila, int numero, String descripcion, double monto) {
+    public void modificarFactura(int fila, String numero, String descripcion, String monto) {
         Factura f = facturas[fila];
         f.setNumero(numero);
         f.setDescripcion(descripcion);
