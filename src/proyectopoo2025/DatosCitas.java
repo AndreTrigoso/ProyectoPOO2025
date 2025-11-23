@@ -224,7 +224,6 @@ public class DatosCitas extends javax.swing.JFrame {
         String modalidad = jbModalidad.getSelectedItem().toString();
         String fecha = jbFecha.getSelectedItem().toString();
         String hora = jbHora.getSelectedItem().toString();
-        String fechaHora = fecha + " " + hora;
         String codigoConsultorio = tfCodigodeConsultorio.getText();
 
         if (pacienteDni.isEmpty() || medicoDni.isEmpty() || modalidad.isEmpty() ||
