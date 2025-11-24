@@ -4,6 +4,11 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionConsultorios;
+import Model.Consultorio;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Aidan
@@ -13,9 +18,30 @@ public class GestorConsultorios extends javax.swing.JFrame {
     /**
      * Creates new form GestorConsultorios
      */
-    public GestorConsultorios() {
+    private GestionConsultorios gestor;
+    
+    public GestorConsultorios(GestionConsultorios gestor) {
         initComponents();
+        this.gestor = gestor;
+        cargarDatosATabla();
     }
+    
+    private void cargarDatosATabla() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); 
+
+        for (int i = 0; i < gestor.getNumConsultorios(); i++) {
+
+            Consultorio consultorio = gestor.getConsultorios(i);
+
+            model.addRow(new Object[]{
+            consultorio.getCodigo(),
+            consultorio.getEspecialidad(),
+            consultorio.getEstado(),
+        });
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +52,120 @@ public class GestorConsultorios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jbModificar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbRegistrar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Especialidad", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
+
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
+
+        jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jbRegistrar)
+                        .addGap(43, 43, 43)
+                        .addComponent(jbModificar)
+                        .addGap(48, 48, 48)
+                        .addComponent(jbEliminar)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbModificar)
+                    .addComponent(jbEliminar)
+                    .addComponent(jbRegistrar))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+        Consultorio consultorio = gestor.getConsultorios(fila);
+
+        DatosConsultorio ventana = new DatosConsultorio(gestor);
+        ventana.setDatos(consultorio, fila);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este consultorio?", "Confirmar",
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+            gestor.eliminarConsultorio();
+            cargarDatosATabla();
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+        DatosConsultorio ventana = new DatosConsultorio(gestor);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,13 +195,17 @@ public class GestorConsultorios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestorConsultorios().setVisible(true);
-            }
+        GestionConsultorios gestor = new GestionConsultorios();
+        java.awt.EventQueue.invokeLater(() -> {
+            new DatosConsultorio(gestor).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbRegistrar;
     // End of variables declaration//GEN-END:variables
 }

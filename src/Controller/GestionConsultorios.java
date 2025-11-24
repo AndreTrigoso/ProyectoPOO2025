@@ -28,14 +28,17 @@ public class GestionConsultorios {
         return consultorios;
     }
 
-    public void agregarConsultorio(Consultorio c) {
-
-   
-        if (numConsultorios >= consultorios.length) {
-            this.consultorios[numConsultorios] = c;
-            numConsultorios++;
+    public void agregarConsultorio(String codigo, String especialidad, String estado){
+        if(this.numConsultorios < this.consultorios.length){
+            if (!consultorioExiste(codigo)){
+                this.consultorios[this.numConsultorios] = new Consultorio(codigo, especialidad, estado);
+                this.numConsultorios++;
+            }
+            else 
+            {
+                System.out.println("El consultorio ya existe");
+            }
         }
-
     }
 
 
@@ -74,5 +77,25 @@ public class GestionConsultorios {
         }
         return null;
     }
+    
+        public boolean consultorioExiste(String codigo){
+        for (int i = 0; i < this.numConsultorios; i++) {
+            if(this.consultorios[i].getCodigo().equalsIgnoreCase(codigo)){
+                return true;
+            }
+        }
+        return false;
+        }
 
+    public Consultorio getConsultorios(int i) {
+        return consultorios[i];
+    }
+
+    public void setConsultorios(Consultorio[] consultorios) {
+        this.consultorios = consultorios;
+    }
+    
+    public int genNumConsultorios(){
+        return numConsultorios;
+    }
 }
