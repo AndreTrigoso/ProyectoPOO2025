@@ -27,11 +27,11 @@ public class GestionFactura {
         this.cantidad = cantidad;
     }
     
-    public void crearFactura(String numero, String descripcion, String monto) {
+    public void crearFactura(Factura f) {
         if (cantidad < facturas.length) {
 
 
-        facturas[cantidad] = new Factura(numero, descripcion, monto);
+        facturas[cantidad] = f;
         cantidad++;
 
         }

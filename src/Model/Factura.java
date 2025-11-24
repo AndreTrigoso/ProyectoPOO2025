@@ -4,11 +4,13 @@ public class Factura {
     private String numero;
     private String descripcion;
     private String monto;
+    private double calculo;
 
-    public Factura(String numero, String descripcion, String monto) {
+    public Factura(String numero, String descripcion, Orden orden, Consulta consulta) {
         this.numero = numero;
         this.descripcion = descripcion;
-        this.monto = monto;
+        this.calculo = orden.getPrecio() + consulta.getPrecio();
+        this.monto = "" + this.calculo;
     }
 
     public String getNumero() {

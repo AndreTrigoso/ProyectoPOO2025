@@ -4,11 +4,21 @@ public class Orden {
     private String nombre;
     private String descripcion;
     private double precio;
+    private String estado;
 
-    public Orden(String nombre, String descripcion, double precio) {
+    public Orden(String nombre, String descripcion, double precio, String estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getNombre() {

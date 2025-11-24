@@ -5,6 +5,8 @@
 package proyectopoo2025;
 
 
+import Controller.GestionConsulta;
+import Model.Orden;
 import Model.Factura;
 import Controller.GestionFactura;
 import javax.swing.JOptionPane;
@@ -27,12 +29,21 @@ public class DatosFactura extends javax.swing.JFrame {
         this.gestor = gestor;
     }
     
+     public void cargarOrden() {
+    jbOrden.removeAllItems();
+    
+    for (int i = 0; i < ; i++) {
+        Empleado e = gestorEmpleados.getEmpleados(i);
+
+        if (e.getRol().equalsIgnoreCase("Médico")) {
+            jbMedico.addItem(e.getNombres() + " " + e.getApellidos());
+            }
+        }
+    }
+    
     public void setDatos(Factura f, int indice) {
         this.indiceModificar = indice;
 
-        tfNumero.setText(String.valueOf(f.getNumero()));
-        tfDescripcion.setText(f.getDescripcion());
-        tfMonto.setText(String.valueOf(f.getMonto()));
     }
 
     /**
@@ -47,25 +58,21 @@ public class DatosFactura extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfNumero = new javax.swing.JTextField();
-        tfDescripcion = new javax.swing.JTextField();
-        tfMonto = new javax.swing.JTextField();
         jbAceptar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
+        labelMonto = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jbOrden = new javax.swing.JComboBox<>();
+        tfNumero = new javax.swing.JTextField();
+        jbModalidad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Numero de Factura:");
 
-        jLabel2.setText("Descripcion:");
+        jLabel2.setText("Modalidad de Pago");
 
         jLabel3.setText("Monto:");
-
-        tfNumero.setText("jTextField1");
-
-        tfDescripcion.setText("jTextField2");
-
-        tfMonto.setText("jTextField3");
 
         jbAceptar.setText("Aceptar");
         jbAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +88,16 @@ public class DatosFactura extends javax.swing.JFrame {
             }
         });
 
+        labelMonto.setText("jLabel4");
+
+        jLabel4.setText("Orden");
+
+        jbOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tfNumero.setText("jTextField1");
+
+        jbModalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta", "Efectivo" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,22 +109,27 @@ public class DatosFactura extends javax.swing.JFrame {
                         .addComponent(jbAceptar)
                         .addGap(39, 39, 39)
                         .addComponent(jbCancelar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 47, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,14 +139,18 @@ public class DatosFactura extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jbOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addComponent(labelMonto))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAceptar)
                     .addComponent(jbCancelar))
@@ -135,29 +161,7 @@ public class DatosFactura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
-        int numero = Integer.parseInt(tfNumero.getText());
-        String descripcion = tfDescripcion.getText();
-        double monto = Double.parseDouble(tfMonto.getText());
-
-        if (tfNumero.getValue() == null || tfMonto.getValue() == null || descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
-            return;
-            }
         
-        if (indiceModificar == -1) {
-                
-                gestor.crearFactura(numero,descripcion,monto);
-
-                JOptionPane.showMessageDialog(null, "Factura registrada correctamente");
-            } else {
-                gestor.modificarFactura(indiceModificar, numero, descripcion, monto);
-
-                JOptionPane.showMessageDialog(null, "Factura modificada correctamente");
-            }
-            
-            
-            new GestorFacturas(gestor).setVisible(true);
-            this.dispose();
     }//GEN-LAST:event_jbAceptarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -193,10 +197,12 @@ public class DatosFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbAceptar;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JTextField tfDescripcion;
-    private javax.swing.JTextField tfMonto;
+    private javax.swing.JComboBox<String> jbModalidad;
+    private javax.swing.JComboBox<String> jbOrden;
+    private javax.swing.JLabel labelMonto;
     private javax.swing.JTextField tfNumero;
     // End of variables declaration//GEN-END:variables
 }
