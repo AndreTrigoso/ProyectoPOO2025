@@ -2,7 +2,9 @@ package Controller;
 
 import Model.Cita;
 import Model.Consulta;
+import Model.GestionOrden;
 import Model.Orden;
+import Model.Paciente;
 import Model.Receta;
 
 public class GestionConsulta {
@@ -38,30 +40,28 @@ public class GestionConsulta {
         cantidad--;
         System.out.println("Consulta eliminada.");
     }
-    
-    public void modificarConsulta(int posicion, String motivo, double precio, String estado, String antecedentes, String signosVitales, 
-            String examenesFisicos,String diagnosticos, Receta receta, Orden[] orden, int cantidadOrdenes, String plan, Cita cita){
-        
-        if (posicion < 0 || posicion >= cantidad) {
-            System.out.println("Índice inválido.");
-            return;
-        }
-        
-        Consulta c = consultas[posicion];
-        c.setMotivo(motivo);
-        c.setPrecio(precio);
-        c.setEstado(estado);
-        c.setAntecedentes(antecedentes);
-        c.setSignosVitales(signosVitales);
-        c.setExamenesFisicos(examenesFisicos);
-        c.setDiagnosticos(diagnosticos);
-        c.setPlan(plan);
-        c.setCita(cita);
-        c.setOrden(orden);
-        c.setReceta(receta);
 
-        System.out.println("Consulta modificada correctamente");    
+    public Consulta[] getConsultas() {
+        return consultas;
     }
+    
+    public Consulta getConsultas(int indice) {
+        return consultas[indice];
+    }
+
+    public void setConsultas(Consulta[] consultas) {
+        this.consultas = consultas;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
     
     public Consulta buscar(int posicion) {
         if (posicion >= 0 && posicion < this.cantidad) {

@@ -7,7 +7,7 @@ package proyectopoo2025;
 import Controller.GestionConsulta;
 import Model.Orden;
 import Controller.GestionFactura;
-import Model.Consulta;
+import Model.GestionOrden;
 import javax.swing.JOptionPane;
 
 public class DatosOrden extends javax.swing.JFrame {
@@ -17,13 +17,14 @@ public class DatosOrden extends javax.swing.JFrame {
     /**
      * Creates new form DatosOrden
      */
-    private Consulta gestor;
+    private GestionOrden gestor;
     private int indiceModificar = -1;
-
-    public DatosOrden(Consulta gestor) {
-            this.gestor = gestor;
-            initComponents();
-            
+    private DatosConsulta ventanaConsulta;
+    
+    public DatosOrden(GestionOrden gestor, DatosConsulta ventanaConsulta) {
+        this.gestor = gestor;
+        this.ventanaConsulta = ventanaConsulta;
+        initComponents();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,7 +195,7 @@ public class DatosOrden extends javax.swing.JFrame {
     jbEstado.setSelectedIndex(0);
 
 
-    GestorConsulta tabla = new GestorConsulta(gestor);
+    GestorOrden tabla = new GestorOrden(gestor, ventanaConsulta);
     tabla.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_bAceptarActionPerformed
@@ -211,28 +212,7 @@ public class DatosOrden extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        Consulta gestor = new Consulta();
-        java.awt.EventQueue.invokeLater(() -> new DatosOrden(gestor).setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;

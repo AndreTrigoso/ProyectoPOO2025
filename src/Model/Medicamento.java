@@ -1,13 +1,13 @@
 package Model;
 
 public class Medicamento {
-    private double dosis;
-    private int frecuencia;
-    private int duracion;
+    private String dosis;
+    private String frecuencia;
+    private String duracion;
     private String nombre;
     private String marca;
 
-    public Medicamento(double dosis, int frecuencia, int duracion, String nombre, String marca) {
+    public Medicamento(String dosis, String frecuencia, String duracion, String nombre, String marca) {
         this.dosis = dosis;
         this.frecuencia = frecuencia;
         this.duracion = duracion;
@@ -15,29 +15,31 @@ public class Medicamento {
         this.marca = marca;
     }
 
-    public double getDosis() {
+    public String getDosis() {
         return dosis;
     }
 
-    public void setDosis(double dosis) {
+    public void setDosis(String dosis) {
         this.dosis = dosis;
     }
 
-    public int getFrecuencia() {
+    public String getFrecuencia() {
         return frecuencia;
     }
 
-    public void setFrecuencia(int frecuencia) {
+    public void setFrecuencia(String frecuencia) {
         this.frecuencia = frecuencia;
     }
 
-    public int getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
+
+    
 
     public String getNombre() {
         return nombre;

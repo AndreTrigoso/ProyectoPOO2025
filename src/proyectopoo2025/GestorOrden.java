@@ -10,26 +10,28 @@ package proyectopoo2025;
  */
 
 import Controller.GestionConsulta;
-import Model.Consulta;
+import Model.GestionOrden;
 import Model.Orden;
 import proyectopoo2025.DatosOrden;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class GestorConsulta extends javax.swing.JFrame {
+public class GestorOrden extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorConsulta.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorOrden.class.getName());
 
     /**
-     * Creates new form GestorConsulta
+     * Creates new form GestorOrden
      */
-   private Consulta gestor1;
+   private GestionOrden gestor1;
+   private DatosConsulta ventanaConsulta;
     
-    public GestorConsulta(Consulta gestor1) {
+    public GestorOrden(GestionOrden gestor1, DatosConsulta ventanaConsulta) {
         initComponents();
         this.gestor1 = gestor1;
+        this.ventanaConsulta = ventanaConsulta;
         cargarDatosATabla1();
-    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,43 +42,14 @@ public class GestorConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         bAgregar1 = new javax.swing.JButton();
         bEliminar1 = new javax.swing.JButton();
         bModificar1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        bGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "DNI", "Nombres", "Apellidos", "Rol", "Especialidad", "Telefono", "Correo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         bAgregar1.setText("Agregar Orden");
         bAgregar1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,37 +91,48 @@ public class GestorConsulta extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
                         .addComponent(bAgregar1)
-                        .addGap(18, 18, 18)
+                        .addGap(50, 50, 50)
                         .addComponent(bModificar1)
-                        .addGap(18, 18, 18)
+                        .addGap(43, 43, 43)
                         .addComponent(bEliminar1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(238, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bGuardar)
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAgregar1)
                     .addComponent(bModificar1)
                     .addComponent(bEliminar1))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bGuardar)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,14 +159,14 @@ public class GestorConsulta extends javax.swing.JFrame {
     
     private void bAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregar1ActionPerformed
         // TODO add your handling code here:
-        DatosOrden ventana = new DatosOrden(gestor1);
+        DatosOrden ventana = new DatosOrden(gestor1,ventanaConsulta);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bAgregar1ActionPerformed
 
     private void bEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminar1ActionPerformed
         // TODO add your handling code here:
-        int fila = jTable1.getSelectedRow();
+        int fila = jTable2.getSelectedRow();
 
         int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar esta orden?", "Confirmar",
             JOptionPane.YES_NO_OPTION);
@@ -204,46 +188,37 @@ public class GestorConsulta extends javax.swing.JFrame {
         }
         Orden o = gestor1.getOrdenes(fila);
 
-        DatosOrden ventana = new DatosOrden(gestor1);
+        DatosOrden ventana = new DatosOrden(gestor1,ventanaConsulta);
         ventana.setDatos(o, fila);
         ventana.setVisible(true);
 
         this.dispose();
     }//GEN-LAST:event_bModificar1ActionPerformed
 
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+
+
+        ventanaConsulta.setOrdenes(this.gestor1);
+
+
+        JOptionPane.showMessageDialog(this, "Órdenes guardadas correctamente");
+
+
+        ventanaConsulta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        Consulta gestor1 = new Consulta();
-        java.awt.EventQueue.invokeLater(() -> new GestorConsulta(gestor1).setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAgregar1;
     private javax.swing.JButton bEliminar1;
+    private javax.swing.JButton bGuardar;
     private javax.swing.JButton bModificar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

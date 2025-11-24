@@ -36,7 +36,7 @@ public class Receta {
         }
     }
     
-    public void modificar(int posicion, double dosis, int frecuencia, int duracion, 
+    public void modificar(int posicion, String dosis, String frecuencia, String duracion, 
                       String nombre, String marca) {
         if (posicion < 0 || posicion >= cantidad) {
         System.out.println("Posición inválida");
@@ -54,17 +54,25 @@ public class Receta {
         System.out.println("Medicamento modificado.");
         }
     
-    public void ver() {
-    System.out.println("=== Lista de Medicamentos ===");
-    for (int i = 0; i < cantidad; i++) {
-        Medicamento m = medicamentos[i];
 
-        System.out.println("Nombre: " + m.getNombre());
-        System.out.println("Marca: " + m.getMarca());
-        System.out.println("Dosis: " + m.getDosis());
-        System.out.println("Frecuencia: " + m.getFrecuencia());
-        System.out.println("Duración: " + m.getDuracion());
-        System.out.println("-----------------------------");
+
+    public Medicamento[] getMedicamentos() {
+        return medicamentos;
     }
-}
+
+    public void setMedicamentos(Medicamento[] medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    public Medicamento getMedicamentos(int i) {
+        return medicamentos[i];
+    }
 }
