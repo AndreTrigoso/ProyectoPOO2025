@@ -15,7 +15,7 @@ import Model.Paciente;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class GestorConsultas extends javax.swing.JInternalFrame {
+public class GestorConsultas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorConsultas.class.getName());
 

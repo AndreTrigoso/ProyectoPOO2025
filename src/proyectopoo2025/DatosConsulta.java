@@ -17,7 +17,7 @@ package proyectopoo2025;
     import Model.Receta;
     import javax.swing.JOptionPane;
 
-public class DatosConsulta extends javax.swing.JInternalFrame {
+public class DatosConsulta extends javax.swing.JFrame {
   
     
     
@@ -140,6 +140,11 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         });
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Precio de Consulta");
 
@@ -326,6 +331,11 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bOrdenActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -25,7 +25,9 @@ public class DatosPacientes extends javax.swing.JFrame {
     
     public DatosPacientes(GestionPaciente gestor) { 
         initComponents(); 
-        this.gestor = gestor; }
+        this.gestor = gestor; 
+    
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,6 +100,11 @@ public class DatosPacientes extends javax.swing.JFrame {
         });
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Número de Emergencia");
 
@@ -253,6 +260,11 @@ public class DatosPacientes extends javax.swing.JFrame {
                 tabla.setVisible(true);
                 this.dispose();
     }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
 
     /**

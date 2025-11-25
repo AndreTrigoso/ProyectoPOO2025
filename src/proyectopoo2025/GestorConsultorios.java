@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aidan
  */
-public class GestorConsultorios extends javax.swing.JInternalFrame {
+public class GestorConsultorios extends javax.swing.JFrame {
 
     /**
      * Creates new form GestorConsultorios
