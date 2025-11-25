@@ -13,7 +13,7 @@ import Model.Medicamento;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Model.Receta;
-public class GestorReceta extends javax.swing.JFrame {
+public class GestorReceta extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorReceta.class.getName());
 
