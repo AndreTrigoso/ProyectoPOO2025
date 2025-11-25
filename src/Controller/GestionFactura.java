@@ -14,6 +14,10 @@ public class GestionFactura {
     public Factura[] getFacturas() {
         return facturas;
     }
+    
+    public Factura getFacturas(int i) {
+        return facturas[i];
+    }
 
     public void setFacturas(Factura[] facturas) {
         this.facturas = facturas;

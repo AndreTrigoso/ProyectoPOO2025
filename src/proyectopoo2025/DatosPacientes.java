@@ -218,40 +218,40 @@ public class DatosPacientes extends javax.swing.JFrame {
         String telefonoEmergencia = tfNumerodeEmergencia.getText();
 
         if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || 
-    fechaNacimiento.isEmpty() || telefono.isEmpty()) {
+            fechaNacimiento.isEmpty() || telefono.isEmpty()) {
 
-    JOptionPane.showMessageDialog(null, "Complete todos los campos obligatorios");
-    return;
-}
+            JOptionPane.showMessageDialog(null, "Complete todos los campos obligatorios");
+            return;
+        }
 
-if (indiceModificar == -1) { 
+        if (indiceModificar == -1) { 
 
-    Paciente p = new Paciente(dni, nombre, apellido, fechaNacimiento, sexo,
-                              telefono, contactoEmergencia, telefonoEmergencia);
+            Paciente p = new Paciente(dni, nombre, apellido, fechaNacimiento, sexo,
+                                      telefono, contactoEmergencia, telefonoEmergencia);
 
-    gestor.agregarPaciente(p);
-    JOptionPane.showMessageDialog(null, "Paciente registrado correctamente");
+            gestor.agregarPaciente(p);
+            JOptionPane.showMessageDialog(null, "Paciente registrado correctamente");
 
-} else { 
+        } else { 
 
-    Paciente p = new Paciente(dni, nombre, apellido, fechaNacimiento, sexo,
-                              telefono, contactoEmergencia, telefonoEmergencia);
+            Paciente p = new Paciente(dni, nombre, apellido, fechaNacimiento, sexo,
+                                      telefono, contactoEmergencia, telefonoEmergencia);
 
-    gestor.modificarPaciente(indiceModificar, dni, nombre, apellido, fechaNacimiento, sexo, telefono, telefonoEmergencia, contactoEmergencia);
-    JOptionPane.showMessageDialog(null, "Paciente modificado correctamente");
-}
-        tfNombre.setText("");
-        tfApellido.setText("");
-        tfDni.setText("");
-        tfFechadeNacimiento.setText("");
-        tfNumerodeTelefono.setText("");
-        tfNumerodeEmergencia.setText("");
-        tfContactodeEmergencia.setText("");
-        jbSexo.setSelectedIndex(0);
-        
-        GestorPacientes tabla = new GestorPacientes(gestor);
-        tabla.setVisible(true);
-        this.dispose();
+            gestor.modificarPaciente(indiceModificar, dni, nombre, apellido, fechaNacimiento, sexo, telefono, telefonoEmergencia, contactoEmergencia);
+            JOptionPane.showMessageDialog(null, "Paciente modificado correctamente");
+        }
+                tfNombre.setText("");
+                tfApellido.setText("");
+                tfDni.setText("");
+                tfFechadeNacimiento.setText("");
+                tfNumerodeTelefono.setText("");
+                tfNumerodeEmergencia.setText("");
+                tfContactodeEmergencia.setText("");
+                jbSexo.setSelectedIndex(0);
+
+                GestorPacientes tabla = new GestorPacientes(gestor);
+                tabla.setVisible(true);
+                this.dispose();
     }//GEN-LAST:event_botonAceptarActionPerformed
 
 
