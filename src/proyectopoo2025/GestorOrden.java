@@ -16,7 +16,7 @@ import proyectopoo2025.DatosOrden;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class GestorOrden extends javax.swing.JFrame {
+public class GestorOrden extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorOrden.class.getName());
 

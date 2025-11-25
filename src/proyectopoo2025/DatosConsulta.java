@@ -17,7 +17,7 @@ package proyectopoo2025;
     import Model.Receta;
     import javax.swing.JOptionPane;
 
-public class DatosConsulta extends javax.swing.JFrame {
+public class DatosConsulta extends javax.swing.JInternalFrame {
   
     
     
@@ -349,6 +349,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         //</editor-fold>
 
         /* Create and display the form */
+        
         GestionConsulta gestorC = new GestionConsulta();
         GestionPaciente gestorP = new GestionPaciente();
         GestionOrden gestorO = new GestionOrden();

@@ -14,7 +14,7 @@ import proyectopoo2025.DatosPacientes;
  *
  * @author Usuario
  */
-public class GestorPacientes extends javax.swing.JFrame {
+public class GestorPacientes extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorPacientes.class.getName());
 

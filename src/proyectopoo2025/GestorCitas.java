@@ -16,7 +16,7 @@ import Model.Cita;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class GestorCitas extends javax.swing.JFrame {
+public class GestorCitas extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorCitas.class.getName());
 

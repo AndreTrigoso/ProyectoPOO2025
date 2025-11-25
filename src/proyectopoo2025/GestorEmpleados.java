@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class GestorEmpleados extends javax.swing.JFrame {
+public class GestorEmpleados extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorEmpleados.class.getName());
 

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class GestorFactura extends javax.swing.JFrame {
+public class GestorFactura extends javax.swing.JInternalFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GestorFactura.class.getName());
 
