@@ -47,6 +47,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         //this.gestorConsulta.setDependencias(gestorPaciente, gestorEmpleados);
         this.gestorFactura = new GestionFactura();
         this.gestorOrden = new GestionOrden();
+        jMenuItem1.setText(user.getRoles());  
 
         if (user != null) {
             switch (user.getRoles()) {
@@ -99,6 +100,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         miFactura = new javax.swing.JMenuItem();
         miCitas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,7 +164,17 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Rol");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setEnabled(false);
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -220,6 +232,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_miConsultoriosActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
 
     /**
@@ -251,6 +268,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem miCitas;
     private javax.swing.JMenuItem miConsultas;
     private javax.swing.JMenuItem miConsultorios;

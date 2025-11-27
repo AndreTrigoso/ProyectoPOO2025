@@ -81,7 +81,12 @@ public class DatosPacientes extends javax.swing.JFrame {
 
         tfFechadeNacimiento.setText("jTextField4");
 
-        jbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "" }));
+        jbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        jbSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSexoActionPerformed(evt);
+            }
+        });
 
         tfNumerodeTelefono.setText("jTextField5");
         tfNumerodeTelefono.addActionListener(new java.awt.event.ActionListener() {
@@ -263,8 +268,12 @@ public class DatosPacientes extends javax.swing.JFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void jbSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSexoActionPerformed
 
 
     /**

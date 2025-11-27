@@ -37,60 +37,46 @@ public class DatosFactura extends javax.swing.JFrame {
 
         
         cargarConsulta();
-        jbConsulta.addActionListener(e -> actualizarOrden());
+        
     }
     
     private void actualizarOrden() {
 
-        int consultaIndex = jbConsulta.getSelectedIndex();
+    int consultaIndex = jbConsulta.getSelectedIndex();
 
-    if (consultaIndex <= 0) {
-        jLabel6.setText("- - - - -");
-        labelMonto.setText("0.00");
+    Consulta c = gestorConsulta.getConsultas(consultaIndex - 1);
+    if (c == null) {
+        jLabel6.setText("boleta.pdf");
+        labelMonto.setText("boleta.pdf");
         return;
     }
 
-    Consulta c = gestorConsulta.getConsultas(consultaIndex - 1);
-
-    String apellido = (c.getPaciente().getApellido());
-
     GestionOrden ordenes = c.getOrden();
-
-    if (ordenes != null && ordenes.getCantidadOrdenes() > 0) {
-        jLabel6.setText(apellido + "-orden.pdf");
-    } else {
-        jLabel6.setText("Sin orden");
-    }
-
-
     double total = c.getPrecio();
 
     if (ordenes != null) {
-        for (Orden o : ordenes.getOrdenes()) {
-            total += o.getPrecio();
+        for (int i = 0; i < ordenes.getCantidadOrdenes(); i++) {
+            Orden o = ordenes.getOrdenes(i);
+            if (o != null) {
+                total += o.getPrecio();
+            }
         }
     }
 
-    labelMonto.setText(String.valueOf(total));
+    jLabel6.setText("boleta.pdf");
+    labelMonto.setText("boleta.pdf");
     }
 
-    public DatosFactura() {
-        initComponents();
-        // Ajuste de tamaño del JTextField
-        tfNumero.setColumns(20);
-        tfNumero.setPreferredSize(new java.awt.Dimension(200, tfNumero.getPreferredSize().height));
-        revalidate();
-        pack();
-    }
+    
 
 
     public void cargarConsulta() {
         jbConsulta.removeAllItems();
-        jbConsulta.addItem("Ninguna");
+        
         if (gestorConsulta != null) {
             for (int i = 0; i < gestorConsulta.getCantidad(); i++) {
                 Consulta c = gestorConsulta.getConsultas(i);
-                String paciente = (c.getPaciente() != null) ? c.getPaciente().getApellido() : "Anonimo";
+                String paciente = c.getPaciente().getApellido();
                 jbConsulta.addItem("Consulta " + paciente + " - $" + c.getPrecio());
             }
         }
@@ -156,7 +142,7 @@ public class DatosFactura extends javax.swing.JFrame {
             }
         });
 
-        labelMonto.setText("jLabel4");
+        labelMonto.setText("- - - - -");
 
         jLabel4.setText("Orden");
 
@@ -254,7 +240,11 @@ public class DatosFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_jbModalidadActionPerformed
 
     private void jbConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultaActionPerformed
-        // TODO add your handling code here:
+         System.out.println("SELECCIONASTE: " + jbConsulta.getSelectedIndex());
+        if (jbConsulta.getSelectedIndex() <= 0) {
+            return;
+        }
+        actualizarOrden();
     }//GEN-LAST:event_jbConsultaActionPerformed
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jbAceptarActionPerformed
@@ -266,7 +256,6 @@ public class DatosFactura extends javax.swing.JFrame {
 
         String modalidad = (String) jbModalidad.getSelectedItem();
 
-        // Consulta seleccionada
         Consulta consulta = null;
         int consultaIndex = jbConsulta.getSelectedIndex();
 
@@ -278,41 +267,24 @@ public class DatosFactura extends javax.swing.JFrame {
         double totalOrdenes = 0;
 
         if (consulta != null && consulta.getOrden() != null) {
+
             GestionOrden go = consulta.getOrden();
-            for (Orden o : go.getOrdenes()) {
-                totalOrdenes += o.getPrecio();
+
+            for (int i = 0; i < go.getCantidadOrdenes(); i++) {
+                Orden o = go.getOrdenes(i);
+                if (o != null) {
+                    totalOrdenes += o.getPrecio();
+                }
             }
         }
 
-
-        Orden ordenTotal = new Orden(
-            "Órdenes múltiples",
-            "Suma de todas las órdenes",
-            totalOrdenes,
-            "GENERADA"
-        );
-
-
         Factura f = new Factura(
-                numero,
-                "Pago con " + modalidad,
-                ordenTotal,
-                consulta
+            numero,
+            "Pago con " + modalidad,
+            totalOrdenes
         );
 
         gestorFactura.crearFactura(f);
-        
-        
-        JOptionPane.showMessageDialog(this, "Factura creada con éxito");
-        
-        tfNumero.setText(" ");
-        jbModalidad.setSelectedIndex(0);
-        jbConsulta.setSelectedIndex(0);
-        labelMonto.setText("0.00");
-
-        GestorFactura tabla = new GestorFactura(gestorFactura, gestorOrden, gestorConsulta);
-        tabla.setVisible(true);
-        this.dispose();
             }
     // GEN-LAST:event_jbAceptarActionPerformed
 

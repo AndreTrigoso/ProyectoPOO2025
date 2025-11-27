@@ -49,6 +49,7 @@ public class GestorFactura extends javax.swing.JFrame {
         jbModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        bGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +108,13 @@ public class GestorFactura extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,6 +131,10 @@ public class GestorFactura extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(jbEliminar)))
                 .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bGuardar)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +146,8 @@ public class GestorFactura extends javax.swing.JFrame {
                     .addComponent(jbAgregar)
                     .addComponent(jbEliminar)
                     .addComponent(jbModificar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(bGuardar))
         );
 
         pack();
@@ -170,6 +183,13 @@ public class GestorFactura extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
+        this.dispose();
+        
+    }//GEN-LAST:event_bGuardarActionPerformed
 
     public void cargarDatosATabla() {
     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -215,6 +235,7 @@ public class GestorFactura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bGuardar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbAgregar;

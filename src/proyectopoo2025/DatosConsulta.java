@@ -64,7 +64,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
 
     jLabel8.setText("A-" + p.getApellido() + ".pdf");  
     jLabel7.setText("S-" + p.getApellido() + ".pdf");
-    jLabel2.setText("E-" + p.getApellido() + ".pdf");
+    lExamen.setText("E-" + p.getApellido() + ".pdf");
     
 }
     
@@ -96,11 +96,11 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         tfPrecio = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         bOrden = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        lExamen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Motivo:");
+        jLabel2.setText("Motivo");
 
         jLabel3.setText("Antecedentes:");
 
@@ -159,7 +159,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
             }
         });
 
-        jLabel12.setText("-----");
+        lExamen.setText("-----");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,19 +189,19 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(78, 78, 78)
                                     .addComponent(jLabel1)
                                     .addGap(38, 38, 38))
                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(bReceta)
                                 .addComponent(jLabel7)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12))
+                                .addComponent(lExamen))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +221,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(jLabel1)
-                        .addGap(24, 24, 24))
+                        .addGap(0, 22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,12 +229,12 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGap(32, 32, 32)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8))
@@ -245,7 +245,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel12))
+                    .addComponent(lExamen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -262,7 +262,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bCancelar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,11 +284,12 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     String motivo = tfMotivo.getText();
     String antecedentes = jLabel8.getText();
     String signos = jLabel7.getText();
-    String examen = jLabel2.getText();
+    String examen = lExamen.getText();
     String precioTxt = tfPrecio.getText();
-    GestionOrden orden = gestorOrden;
+    
     Receta receta = recetaActual;           
  
+    GestionOrden orden = getGestorOrden();
     
     double precio;
     precio = Double.parseDouble(precioTxt);
@@ -304,9 +305,9 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         receta,
         orden
     );
-
+    
     gestorConsulta.agregarConsulta(c);
-
+    
     GestorConsultas ventana = new GestorConsultas(gestorConsulta);
     ventana.setVisible(true);
     this.dispose();
@@ -319,6 +320,14 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     public void setOrdenes(GestionOrden ordenes) {
         this.gestorOrden = ordenes;
     }
+
+    public void setGestorOrden(GestionOrden go) {
+        this.gestorOrden = go;
+    }
+    
+    public GestionOrden getGestorOrden() {
+        return gestorOrden;
+    }
     
     private void bRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRecetaActionPerformed
         GestorReceta ventana = new GestorReceta(this.recetaActual,this);
@@ -327,7 +336,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     }//GEN-LAST:event_bRecetaActionPerformed
 
     private void bOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenActionPerformed
-        GestorOrden ventana = new GestorOrden(this.gestorOrden,this);
+        GestorOrden ventana = new GestorOrden(this);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bOrdenActionPerformed
@@ -375,7 +384,6 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -385,6 +393,7 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> jbPaciente;
+    private javax.swing.JLabel lExamen;
     private javax.swing.JTextField tfMotivo;
     private javax.swing.JTextField tfPrecio;
     // End of variables declaration//GEN-END:variables

@@ -49,6 +49,7 @@ public class GestorCitas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonAgregar = new javax.swing.JButton();
+        bGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,21 +93,34 @@ public class GestorCitas extends javax.swing.JFrame {
             }
         });
 
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAgregar)
-                .addGap(74, 74, 74)
-                .addComponent(botonModificar)
-                .addGap(74, 74, 74)
-                .addComponent(botonEliminar)
-                .addGap(216, 216, 216))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonAgregar)
+                                .addGap(74, 74, 74)
+                                .addComponent(botonModificar)
+                                .addGap(74, 74, 74)
+                                .addComponent(botonEliminar)
+                                .addGap(216, 216, 216))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bGuardar)
+                                .addGap(27, 27, 27))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +132,9 @@ public class GestorCitas extends javax.swing.JFrame {
                     .addComponent(botonAgregar)
                     .addComponent(botonModificar)
                     .addComponent(botonEliminar))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bGuardar)
+                .addContainerGap())
         );
 
         pack();
@@ -159,6 +175,13 @@ public class GestorCitas extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
+        this.dispose();
+        
+    }//GEN-LAST:event_bGuardarActionPerformed
 
     
     private void cargarDatosATabla() {
@@ -209,6 +232,7 @@ public class GestorCitas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bGuardar;
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;

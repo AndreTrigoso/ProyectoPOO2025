@@ -6,10 +6,9 @@ public class Factura {
     private String monto;
     private double calculo;
 
-    public Factura(String numero, String descripcion, Orden orden, Consulta consulta) {
+    public Factura(String numero, String descripcion, double total) {
         this.numero = numero;
         this.descripcion = descripcion;
-        this.calculo = orden.getPrecio() + consulta.getPrecio();
         this.monto = "" + this.calculo;
     }
 

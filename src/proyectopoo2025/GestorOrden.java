@@ -26,12 +26,12 @@ public class GestorOrden extends javax.swing.JFrame {
    private GestionOrden gestor1;
    private DatosConsulta ventanaConsulta;
     
-    public GestorOrden(GestionOrden gestor1, DatosConsulta ventanaConsulta) {
+    public GestorOrden(DatosConsulta ventanaConsulta) {
         initComponents();
-        this.gestor1 = gestor1;
         this.ventanaConsulta = ventanaConsulta;
+
         cargarDatosATabla1();
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,9 +159,10 @@ public class GestorOrden extends javax.swing.JFrame {
     
     private void bAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregar1ActionPerformed
         // TODO add your handling code here:
-        DatosOrden ventana = new DatosOrden(gestor1,ventanaConsulta);
+        DatosOrden ventana = new DatosOrden(gestor1, ventanaConsulta);
         ventana.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_bAgregar1ActionPerformed
 
     private void bEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminar1ActionPerformed
@@ -186,24 +187,23 @@ public class GestorOrden extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona una orden primero");
             return;
         }
+
         Orden o = gestor1.getOrdenes(fila);
 
-        DatosOrden ventana = new DatosOrden(gestor1,ventanaConsulta);
+         DatosOrden ventana = new DatosOrden(
+            gestor1,
+            ventanaConsulta            
+         );
+    
         ventana.setDatos(o, fila);
         ventana.setVisible(true);
-
         this.dispose();
     }//GEN-LAST:event_bModificar1ActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
 
-
-        ventanaConsulta.setOrdenes(this.gestor1);
-
-
+        ventanaConsulta.setGestorOrden(gestor1);
         JOptionPane.showMessageDialog(this, "Órdenes guardadas correctamente");
-
-
         ventanaConsulta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bGuardarActionPerformed

@@ -17,7 +17,7 @@ public class Consulta {
     private String signosVitales;
     private String examenFisico;
     private Receta receta;
-    GestionOrden orden;
+    private GestionOrden orden;
 
     public Consulta(String motivo, double precio, String estado, Paciente paciente, String antecedentes, String signosVitales, String examenFisico, Receta receta, GestionOrden orden) {
         this.motivo = motivo;

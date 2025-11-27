@@ -46,7 +46,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -57,6 +57,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
         jbAgregar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
+        bGuardar = new javax.swing.JButton();
 
         jLabel1.setText("DNI");
 
@@ -76,7 +77,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
 
         jLabel4.setText("Rol");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Recepcionistas", "Médicos", "Enfermeros(as)", "Cajeros", "Administradores" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionistas", "Médicos", "Enfermeros(as)", "Cajeros", "Administradores" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -138,6 +139,13 @@ public class GestorEmpleados extends javax.swing.JFrame {
             }
         });
 
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,16 +153,22 @@ public class GestorEmpleados extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jbAgregar)
-                        .addGap(59, 59, 59)
-                        .addComponent(jbModificar)
-                        .addGap(51, 51, 51)
-                        .addComponent(jbEliminar)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jbAgregar)
+                                .addGap(59, 59, 59)
+                                .addComponent(jbModificar)
+                                .addGap(51, 51, 51)
+                                .addComponent(jbEliminar)))
+                        .addGap(0, 60, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bGuardar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +180,8 @@ public class GestorEmpleados extends javax.swing.JFrame {
                     .addComponent(jbAgregar)
                     .addComponent(jbEliminar)
                     .addComponent(jbModificar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(bGuardar))
         );
 
         pack();
@@ -210,6 +225,13 @@ public class GestorEmpleados extends javax.swing.JFrame {
         ventana.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
+        this.dispose();
+        
+    }//GEN-LAST:event_bGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +284,7 @@ public class GestorEmpleados extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bGuardar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

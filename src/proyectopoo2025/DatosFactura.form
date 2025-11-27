@@ -140,7 +140,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelMonto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
+        <Property name="text" type="java.lang.String" value="- - - - -"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

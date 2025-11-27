@@ -57,6 +57,7 @@ public class GestorConsultorios extends javax.swing.JFrame {
         jbModificar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
+        bGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +103,13 @@ public class GestorConsultorios extends javax.swing.JFrame {
             }
         });
 
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,16 +117,22 @@ public class GestorConsultorios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jbRegistrar)
-                        .addGap(43, 43, 43)
-                        .addComponent(jbModificar)
-                        .addGap(48, 48, 48)
-                        .addComponent(jbEliminar)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jbRegistrar)
+                                .addGap(43, 43, 43)
+                                .addComponent(jbModificar)
+                                .addGap(48, 48, 48)
+                                .addComponent(jbEliminar)))
+                        .addGap(0, 48, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bGuardar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +144,8 @@ public class GestorConsultorios extends javax.swing.JFrame {
                     .addComponent(jbModificar)
                     .addComponent(jbEliminar)
                     .addComponent(jbRegistrar))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(bGuardar))
         );
 
         pack();
@@ -167,6 +182,13 @@ public class GestorConsultorios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbRegistrarActionPerformed
 
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
+        this.dispose();
+        
+    }//GEN-LAST:event_bGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +224,7 @@ public class GestorConsultorios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bGuardar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbEliminar;

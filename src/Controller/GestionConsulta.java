@@ -28,7 +28,7 @@ public class GestionConsulta {
     
     public void eliminarConsulta(int posicion) {
         if (posicion < 0 || posicion >= cantidad) {
-            System.out.println("Posición inválida");
+            
             return;
         }
 
@@ -38,7 +38,7 @@ public class GestionConsulta {
 
         consultas[cantidad - 1] = null;
         cantidad--;
-        System.out.println("Consulta eliminada.");
+        
     }
 
     public Consulta[] getConsultas() {

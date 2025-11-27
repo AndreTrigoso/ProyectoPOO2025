@@ -26,7 +26,9 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         usuarios = new GestorUsuarios();
         usuarios.agregarUsuario("admin", "xd", "Administrador");
-        usuarios.agregarUsuario("medico", "xdd", "Médico");
+        
+        usuarios.agregarUsuario("medico", "xdd", "Medico");
+        
         usuarios.agregarUsuario("enfermera", "xddd", "Enfermero");
     }
 
@@ -103,6 +105,7 @@ public class Login extends javax.swing.JFrame {
        Usuario x = this.usuarios.validarUsuario(this.jTextField1.getText(),this.jPasswordField1.getText() );
        MenudeOpciones menu = new MenudeOpciones(x);
        menu.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
