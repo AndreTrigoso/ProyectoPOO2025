@@ -6,7 +6,7 @@ package proyectopoo2025;
 
 import Controller.GestionConsulta;
 import Model.Orden;
-
+import Controller.GestionFactura;
 import Model.GestionOrden;
 import javax.swing.JOptionPane;
 
@@ -20,7 +20,6 @@ public class DatosOrden extends javax.swing.JFrame {
     private GestionOrden gestor;
     private int indiceModificar = -1;
     private DatosConsulta ventanaConsulta;
-
     
     public DatosOrden(GestionOrden gestor, DatosConsulta ventanaConsulta) {
         this.gestor = gestor;
@@ -179,15 +178,13 @@ public class DatosOrden extends javax.swing.JFrame {
     if (indiceModificar == -1) {
 
         Orden nueva = new Orden(tipo, procedimiento, precio, estado);
-
-        
-        gestor.agregarOrden(nueva);
+        gestor.agregarOrden(nueva); 
 
         JOptionPane.showMessageDialog(null, "Orden registrada correctamente");
 
-    } else {
-
-        gestor.modificarOrden(indiceModificar, tipo, procedimiento, precio, estado);
+    } else { 
+        
+        gestor.modificarOrden(indiceModificar, tipo, procedimiento, precio, estado); 
         JOptionPane.showMessageDialog(null, "Orden modificada correctamente");
     }
 

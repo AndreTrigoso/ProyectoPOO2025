@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Empleado;
 import Model.Usuario;
 
 /**
@@ -19,8 +20,8 @@ public class GestorUsuarios {
         this.count = 0;
     }
     
-    public void agregarUsuario(String pUsername, String pPassword, String pRole){
-        this.usuarios[this.count] = new Usuario(pUsername, pPassword, pRole);
+    public void agregarUsuario(String pUsername, String pPassword, String pRole, Empleado empleado){
+        this.usuarios[this.count] = new Usuario(pUsername, pPassword, pRole, empleado);
         this.count++;
     }
     

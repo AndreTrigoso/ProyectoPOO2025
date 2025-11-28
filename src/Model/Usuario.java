@@ -10,11 +10,13 @@ package Model;
  */
 public class Usuario {
     private String username, password, roles;
+    private Empleado empleado;
 
-    public Usuario(String username, String password, String roles) {
+    public Usuario(String username, String password, String roles, Empleado empleado) {
         this.username = username;
         this.password = password;
         this.roles = roles;
+        this.empleado = empleado;
     }
 
     public String getUsername() {
@@ -39,6 +41,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
     
     

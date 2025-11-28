@@ -46,12 +46,11 @@ public class DatosFactura extends javax.swing.JFrame {
 
     Consulta c = gestorConsulta.getConsultas(consultaIndex - 1);
     if (c == null) {
-        jLabel6.setText("boleta.pdf");
         labelMonto.setText("boleta.pdf");
         return;
     }
 
-    GestionOrden ordenes = c.getOrden();
+    GestionOrden ordenes = c.getGestionOrden();
     double total = c.getPrecio();
 
     if (ordenes != null) {
@@ -63,7 +62,7 @@ public class DatosFactura extends javax.swing.JFrame {
         }
     }
 
-    jLabel6.setText("boleta.pdf");
+
     labelMonto.setText("boleta.pdf");
     }
 
@@ -113,12 +112,10 @@ public class DatosFactura extends javax.swing.JFrame {
         jbAceptar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         labelMonto = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
         jbModalidad = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jbConsulta = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,8 +141,6 @@ public class DatosFactura extends javax.swing.JFrame {
 
         labelMonto.setText("- - - - -");
 
-        jLabel4.setText("Orden");
-
         tfNumero.setText("jTextField1");
 
         jbModalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta", "Efectivo" }));
@@ -164,8 +159,6 @@ public class DatosFactura extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("- - - - -");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,10 +167,7 @@ public class DatosFactura extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -196,7 +186,6 @@ public class DatosFactura extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jbModalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jbConsulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labelMonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -217,15 +206,11 @@ public class DatosFactura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jbConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(labelMonto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAceptar)
                     .addComponent(jbCancelar))
@@ -266,9 +251,9 @@ public class DatosFactura extends javax.swing.JFrame {
         // SUMAR TODAS LAS ÓRDENES DE LA CONSULTA
         double totalOrdenes = 0;
 
-        if (consulta != null && consulta.getOrden() != null) {
+        if (consulta != null && consulta.getGestionOrden() != null) {
 
-            GestionOrden go = consulta.getOrden();
+            GestionOrden go = consulta.getGestionOrden();
 
             for (int i = 0; i < go.getCantidadOrdenes(); i++) {
                 Orden o = go.getOrdenes(i);
@@ -319,9 +304,7 @@ public class DatosFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbAceptar;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JComboBox<String> jbConsulta;

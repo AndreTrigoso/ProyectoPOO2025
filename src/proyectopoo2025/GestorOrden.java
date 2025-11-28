@@ -29,7 +29,8 @@ public class GestorOrden extends javax.swing.JFrame {
     public GestorOrden(DatosConsulta ventanaConsulta) {
         initComponents();
         this.ventanaConsulta = ventanaConsulta;
-
+        this.gestor1 = ventanaConsulta.getGestorOrden();
+        if (this.gestor1 == null) this.gestor1 = new GestionOrden();
         cargarDatosATabla1();
     }
 
@@ -140,6 +141,10 @@ public class GestorOrden extends javax.swing.JFrame {
 
     
     private void cargarDatosATabla1() {
+
+        if (gestor1 == null) {
+            gestor1 = new GestionOrden();
+        }
 
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0); // limpiar

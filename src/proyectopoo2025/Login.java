@@ -5,7 +5,14 @@
 package proyectopoo2025;
 
 import Controller.GestorUsuarios;
+import Model.Administrador;
+import Model.Cajero;
+import Model.Empleado;
+import Model.Enfermero;
+import Model.Medico;
+import Model.Recepcionista;
 import Model.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +24,6 @@ public class Login extends javax.swing.JFrame {
     
     private GestorUsuarios usuarios;
     
-    
 
     /**
      * Creates new form Login
@@ -25,11 +31,23 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         usuarios = new GestorUsuarios();
-        usuarios.agregarUsuario("admin", "xd", "Administrador");
         
-        usuarios.agregarUsuario("medico", "xdd", "Medico");
+        Empleado a1 = new Administrador("70711841", "Diego Alexandro", "Aguayo Arrieta", "Administrador", " ", "962244620", "daguayo@gmail.com");
+        usuarios.agregarUsuario("ADM1", "2706", "Administrador", a1);
         
-        usuarios.agregarUsuario("enfermera", "xddd", "Enfermero");
+                
+        Empleado e1 = new Enfermero("74701841", "Andre Sebastian", "Trigoso Arcaya", "Enfermero", " ", "96478945", "atrigoso@gmail.com");
+        usuarios.agregarUsuario("ENF1", "2009", "Enfermero", e1);
+        
+        Empleado r1 = new Recepcionista("69485623", "Nicolas Mariano", "Uceda Cano", "Recepcionista", " ", "945612304", "nuceda@gmail.com");
+        usuarios.agregarUsuario("REC1", "0301", "Recepcionista", r1);
+        
+        Empleado c1 = new Cajero("74569812", "Aidan Adrian", "Cornejo Canicoba", "Cajero", " ", "93214569", "acornejo@gmail.com");
+        usuarios.agregarUsuario("CAJ1", "1310", "Cajero", c1);
+        
+        Empleado m1 = new Medico("78452319", "Arantxa Angelica", "Ramirez Puccio", "Médico", "Pediatra", "9478622340", "aramirez@gmail.com");
+        usuarios.agregarUsuario("MED1", "2004", "Médico", m1);
+        
     }
 
     /**
@@ -43,8 +61,8 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        jpContraseña = new javax.swing.JPasswordField();
+        tfUsuario = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -75,8 +93,8 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPasswordField1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jpContraseña)
+                        .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,11 +103,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -102,11 +120,23 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       Usuario x = this.usuarios.validarUsuario(this.jTextField1.getText(),this.jPasswordField1.getText() );
-       MenudeOpciones menu = new MenudeOpciones(x);
-       menu.setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String user = tfUsuario.getText();
+        String pass = jpContraseña.getText();
+        
+        Usuario u = usuarios.validarUsuario(user, pass);
+        
+        if (u == null) {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+            return;
+        }
+        
+        String rol = u.getRoles();
+        
+        MenudeOpciones menu = new MenudeOpciones(u);
+        menu.setVisible(true);
+        
+        this.dispose();
+            }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,7 +168,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jpContraseña;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

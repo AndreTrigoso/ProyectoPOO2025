@@ -110,7 +110,7 @@ public class Consulta {
         this.examenFisico = examenFisico;
     }
 
-    public GestionOrden getOrden() {
+    public GestionOrden getGestionOrden() {
         return orden;
     }
 

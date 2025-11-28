@@ -14,6 +14,8 @@ import Model.GestionOrden;
 import Model.Receta;
 import Model.Usuario;
 import Model.Cita;
+import Model.Empleado;
+import java.awt.Color;
 
 
 /**
@@ -23,6 +25,8 @@ import Model.Cita;
 public class MenudeOpciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenudeOpciones.class.getName());
+    private Usuario usuarioLogeado;
+
 
     /**
      * Creates new form MenudeOpciones
@@ -38,7 +42,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
     
     public MenudeOpciones(Usuario user) {
         initComponents();
-        // Initialize all managers here to ensure data persistence
+        panelUsuario.setBackground(new java.awt.Color(230, 240, 255));
+        tfNombre.setEditable(false);
+        tfApellidos.setEditable(false);
+        tfDni.setEditable(false);
+        tfRol.setEditable(false);
+        tfCorreo.setEditable(false);
+        tfTelefono.setEditable(false);
+        tfEspecialidad.setEditable(false);
+        
+        this.usuarioLogeado = user;
+        cargarDatosEnPanel();
+
         this.gestorEmpleados = new GestionEmpleados();
         this.gestorPaciente = new GestionPaciente();
         this.gestorCitas = new GestionCitas();
@@ -58,8 +73,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
                     this.miPacientes.setEnabled(true);
                     this.miReportes.setEnabled(true);
                     this.miFactura.setEnabled(true);
-                    
-                    
                     break;
                 case "Medico":
                     this.miConsultas.setEnabled(true);
@@ -70,6 +83,22 @@ public class MenudeOpciones extends javax.swing.JFrame {
                     this.miFactura.setEnabled(false);
                     break;
                 case "Enfermero":
+                    this.miConsultas.setEnabled(false);
+                    this.miConsultorios.setEnabled(true);
+                    this.miEmpleados.setEnabled(false);
+                    this.miPacientes.setEnabled(true);
+                    this.miReportes.setEnabled(false);
+                    this.miFactura.setEnabled(true);
+                    break;
+                case "Cajero":
+                    this.miConsultas.setEnabled(false);
+                    this.miConsultorios.setEnabled(true);
+                    this.miEmpleados.setEnabled(false);
+                    this.miPacientes.setEnabled(true);
+                    this.miReportes.setEnabled(false);
+                    this.miFactura.setEnabled(true);
+                    break;
+                case "Recepcionista":
                     this.miConsultas.setEnabled(false);
                     this.miConsultorios.setEnabled(true);
                     this.miEmpleados.setEnabled(false);
@@ -90,6 +119,24 @@ public class MenudeOpciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        panelUsuario = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfApellidos = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfDni = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfRol = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        tfTelefono = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tfCorreo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tfEspecialidad = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miEmpleados = new javax.swing.JMenuItem();
@@ -102,9 +149,127 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 385, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        panelUsuario.setForeground(new java.awt.Color(0, 153, 255));
+
+        jLabel1.setText("Nombres");
+
+        tfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Apellidos");
+
+        jLabel3.setText("DNI");
+
+        jLabel4.setText("Rol");
+
+        jLabel5.setText("Telefono");
+
+        jLabel6.setText("Correo");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel7.setText("Datos del Usuario");
+
+        jLabel8.setText("Especialidad");
+
+        javax.swing.GroupLayout panelUsuarioLayout = new javax.swing.GroupLayout(panelUsuario);
+        panelUsuario.setLayout(panelUsuarioLayout);
+        panelUsuarioLayout.setHorizontalGroup(
+            panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuarioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(74, 74, 74))
+            .addGroup(panelUsuarioLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfRol, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        panelUsuarioLayout.setVerticalGroup(
+            panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuarioLayout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(29, 29, 29)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tfEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
+        );
+
+        jMenu1.setText("Funciones");
 
         miEmpleados.setText("Empleados");
         miEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -183,16 +348,44 @@ public class MenudeOpciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(294, Short.MAX_VALUE)
+                .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void cargarDatosEnPanel() {
+    if (usuarioLogeado == null) return;
 
+        Empleado emp = usuarioLogeado.getEmpleado();
+
+        tfNombre.setText(emp.getNombres());
+        tfApellidos.setText(emp.getApellidos());
+        tfDni.setText(emp.getDNI());
+        tfRol.setText(emp.getRol());
+        tfCorreo.setText(emp.getCorreo());
+        tfTelefono.setText(emp.getTelefono());
+        if(emp.getRol().equalsIgnoreCase("Médico")){
+            tfEspecialidad.setVisible(true); 
+            jLabel8.setVisible(true);
+            tfEspecialidad.setText(emp.getEspecialidad());
+        }
+        else {
+            tfEspecialidad.setVisible(false);
+            jLabel8.setVisible(false);
+        }
+    }
+    
     private void miEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEmpleadosActionPerformed
         // TODO add your handling code here:
         GestorEmpleados ventana = new GestorEmpleados(gestorEmpleados);
@@ -237,7 +430,11 @@ public class MenudeOpciones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombreActionPerformed
 
+    
 
     /**
      * @param args the command line arguments
@@ -265,10 +462,20 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem miCitas;
     private javax.swing.JMenuItem miConsultas;
     private javax.swing.JMenuItem miConsultorios;
@@ -276,5 +483,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem miFactura;
     private javax.swing.JMenuItem miPacientes;
     private javax.swing.JMenuItem miReportes;
+    private javax.swing.JPanel panelUsuario;
+    private javax.swing.JTextField tfApellidos;
+    private javax.swing.JTextField tfCorreo;
+    private javax.swing.JTextField tfDni;
+    private javax.swing.JTextField tfEspecialidad;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfRol;
+    private javax.swing.JTextField tfTelefono;
     // End of variables declaration//GEN-END:variables
 }
