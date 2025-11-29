@@ -71,46 +71,61 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jMenuItem1.setText(user.getRoles());  
 
         if (user != null) {
-            switch (user.getRoles()) {
-                case "Administrador":
-                    this.miConsultas.setEnabled(true);
-                    this.miConsultorios.setEnabled(true);
-                    this.miEmpleados.setEnabled(true);
-                    this.miPacientes.setEnabled(true);
-                    this.miReportes.setEnabled(true);
-                    this.miFactura.setEnabled(true);
+    switch (user.getRoles()) {
+
+        case "Administrador":
+                    miEmpleados.setEnabled(true);
+                    miConsultorios.setEnabled(true);
+                    miReportes.setEnabled(true);
+                    miConsultas.setEnabled(true);
+                    miPacientes.setEnabled(true);
+                    miFactura.setEnabled(true);
+                    miCitas.setEnabled(true);
+                    miCheck.setEnabled(true);
                     break;
-                case "Medico":
-                    this.miConsultas.setEnabled(true);
-                    this.miConsultorios.setEnabled(true);
-                    this.miEmpleados.setEnabled(false);
-                    this.miPacientes.setEnabled(false);
-                    this.miReportes.setEnabled(false);
-                    this.miFactura.setEnabled(false);
-                    break;
-                case "Enfermero":
-                    this.miConsultas.setEnabled(false);
-                    this.miConsultorios.setEnabled(true);
-                    this.miEmpleados.setEnabled(false);
-                    this.miPacientes.setEnabled(true);
-                    this.miReportes.setEnabled(false);
-                    this.miFactura.setEnabled(true);
-                    break;
-                case "Cajero":
-                    this.miConsultas.setEnabled(false);
-                    this.miConsultorios.setEnabled(true);
-                    this.miEmpleados.setEnabled(false);
-                    this.miPacientes.setEnabled(true);
-                    this.miReportes.setEnabled(false);
-                    this.miFactura.setEnabled(true);
-                    break;
+
                 case "Recepcionista":
-                    this.miConsultas.setEnabled(false);
-                    this.miConsultorios.setEnabled(true);
-                    this.miEmpleados.setEnabled(false);
-                    this.miPacientes.setEnabled(true);
-                    this.miReportes.setEnabled(false);
-                    this.miFactura.setEnabled(true);
+                    miEmpleados.setEnabled(false);
+                    miConsultorios.setEnabled(true);
+                    miReportes.setEnabled(false);
+                    miConsultas.setEnabled(false);
+                    miPacientes.setEnabled(true);
+                    miFactura.setEnabled(false);
+                    miCitas.setEnabled(true);
+                    miCheck.setEnabled(false);
+                    break;
+
+                case "Medico":
+                    miEmpleados.setEnabled(false);
+                    miConsultorios.setEnabled(false);
+                    miReportes.setEnabled(false);
+                    miConsultas.setEnabled(true);
+                    miPacientes.setEnabled(true);
+                    miFactura.setEnabled(false);
+                    miCitas.setEnabled(true);
+                    miCheck.setEnabled(false);
+                    break;
+
+                case "Enfermero":
+                    miEmpleados.setEnabled(false);
+                    miConsultorios.setEnabled(false);
+                    miReportes.setEnabled(false);
+                    miConsultas.setEnabled(true);
+                    miPacientes.setEnabled(true);
+                    miFactura.setEnabled(false);
+                    miCitas.setEnabled(false);
+                    miCheck.setEnabled(false);
+                    break;
+
+                case "Cajero":
+                    miEmpleados.setEnabled(false);
+                    miConsultorios.setEnabled(false);
+                    miReportes.setEnabled(false);
+                    miConsultas.setEnabled(false);
+                    miPacientes.setEnabled(false);
+                    miFactura.setEnabled(true);
+                    miCitas.setEnabled(false);
+                    miCheck.setEnabled(false);
                     break;
             }
         }
@@ -155,6 +170,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tfEspecialidad = new javax.swing.JTextField();
+        bCerrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miEmpleados = new javax.swing.JMenuItem();
@@ -288,6 +304,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
+        bCerrar.setText("Cerrar Sesion");
+        bCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCerrarActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Funciones");
 
         miEmpleados.setText("Empleados");
@@ -376,7 +399,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(bCerrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -384,7 +409,9 @@ public class MenudeOpciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bCerrar)
+                    .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -467,6 +494,13 @@ public class MenudeOpciones extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_miCheckActionPerformed
 
+    private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
+        // TODO add your handling code here:
+        Login ventanaLogin = new Login();  
+        ventanaLogin.setVisible(true);     
+        this.dispose(); 
+    }//GEN-LAST:event_bCerrarActionPerformed
+
     
 
     /**
@@ -495,6 +529,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
