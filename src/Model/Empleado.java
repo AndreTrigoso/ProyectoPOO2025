@@ -9,7 +9,10 @@ public class Empleado {
     private String Telefono;
     private String Correo;
 
-    public Empleado(String DNI, String Nombres, String Apellidos, String Rol, String Especialidad, String Telefono, String Correo) {
+    public Empleado(String DNI, String Nombres, String Apellidos,
+                    String Rol, String Especialidad,
+                    String Telefono, String Correo) {
+
         this.DNI = DNI;
         this.Nombres = Nombres;
         this.Apellidos = Apellidos;

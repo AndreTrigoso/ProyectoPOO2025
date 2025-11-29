@@ -183,7 +183,7 @@ public class DatosCitas extends javax.swing.JFrame {
 
         for (int i = 0; i < gestorPacientes.getNumPacientes(); i++) {
             Paciente p = gestorPacientes.getPaciente(i);
-            jbPaciente.addItem(p.getNombre() + " " + p.getApellido());
+            jbPaciente.addItem(p.getApellido());
         }
     }
     
@@ -205,8 +205,8 @@ public class DatosCitas extends javax.swing.JFrame {
     for (int i = 0; i < gestorEmpleados.getNroEmpleados(); i++) {
         Empleado e = gestorEmpleados.getEmpleados(i);
 
-        if (e.getRol().equalsIgnoreCase("Médico")) {
-            jbMedico.addItem(e.getNombres() + " " + e.getApellidos());
+        if (e.getRol().toLowerCase().contains("med")) {
+            jbMedico.addItem(e.getApellidos());
             }
         }
     }
@@ -220,14 +220,13 @@ public class DatosCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_jbMedicoActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        String pacienteDni = jbPaciente.getSelectedItem().toString();
-        String medicoDni = jbMedico.getSelectedItem().toString();
+        
         String modalidad = jbModalidad.getSelectedItem().toString();
         String fecha = jbFecha.getSelectedItem().toString();
         String hora = jbHora.getSelectedItem().toString();
         String codigoConsultorio = tfCodigodeConsultorio.getText();
 
-            if (pacienteDni.isEmpty() || medicoDni.isEmpty() || modalidad.isEmpty() ||
+            if (modalidad.isEmpty() ||
         fecha.isEmpty() || hora.isEmpty() || codigoConsultorio.isEmpty()) {
 
         JOptionPane.showMessageDialog(this, 
@@ -235,44 +234,58 @@ public class DatosCitas extends javax.swing.JFrame {
         return;
     }
 
-    // Buscar el paciente por nombre completo en el gestor
-    Paciente pac = null;
-    for (int i = 0; i < gestorPacientes.getNumPacientes(); i++) {
-        Paciente p = gestorPacientes.getPaciente(i);
-        String nombreCompleto = p.getNombre() + " " + p.getApellido();
-        if (nombreCompleto.equals(pacienteDni)) {
-            pac = p;
-            break;
-        }
-    }
-    if (pac == null) {
-        JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado");
-        return;
-    }
+        String textoPaciente = jbPaciente.getSelectedItem().toString();
 
-    // Buscar el médico por nombre completo en el gestor de empleados
-    Medico med = null;
-    for (int i = 0; i < gestorEmpleados.getNroEmpleados(); i++) {
-        Empleado e = gestorEmpleados.getEmpleados(i);
-        if (e instanceof Medico) {
-            String nombreCompletoMed = e.getNombres() + " " + e.getApellidos();
-            if (nombreCompletoMed.equals(medicoDni)) {
-                med = (Medico) e;
+        
+        Paciente pac = null;
+        for (int i = 0; i < gestorPacientes.getNumPacientes(); i++) {
+            Paciente p = gestorPacientes.getPaciente(i);
+            
+            if (textoPaciente.equalsIgnoreCase(p.getApellido())) {
+                pac = p;
                 break;
             }
         }
-    }
-    if (med == null) {
-        JOptionPane.showMessageDialog(this, "No se encontró el médico seleccionado");
-        return;
-    }
 
-    Cita c = new Cita(codigoConsultorio, fecha, hora, modalidad, pac, med);
-    gestorCitas.agregarCita(c);
+        if (pac == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado");
+            return;
+        }
 
-    JOptionPane.showMessageDialog(this, "Cita registrada correctamente");
+    
+        String textoMedico = jbMedico.getSelectedItem().toString();
 
-    this.dispose();
+        Medico med = null;
+
+        for (int i = 0; i < gestorEmpleados.getNroEmpleados(); i++) {
+            Empleado e = gestorEmpleados.getEmpleados(i);
+
+            if (e.getRol().equalsIgnoreCase("Medico") &&
+                e.getApellidos().equalsIgnoreCase(textoMedico)) {
+
+                med = new Medico(
+                    e.getDNI(),
+                    e.getNombres(),
+                    e.getApellidos(),
+                    e.getRol(),
+                    e.getEspecialidad(),
+                    e.getTelefono(),
+                    e.getCorreo()
+        );
+            }
+        }
+
+        if (med == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el médico seleccionado");
+            return;
+        }
+
+        Cita c = new Cita(codigoConsultorio, fecha, hora, modalidad, pac, med);
+        gestorCitas.agregarCita(c);
+
+        JOptionPane.showMessageDialog(this, "Cita registrada correctamente");
+
+        this.dispose();
 }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed

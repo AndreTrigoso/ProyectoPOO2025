@@ -47,7 +47,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cbRol = new javax.swing.JComboBox<String>();
+        cbRol = new javax.swing.JComboBox<>();
         tfApellidos = new javax.swing.JTextField();
         tfNombres = new javax.swing.JTextField();
         tfDni = new javax.swing.JTextField();
@@ -77,7 +77,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
 
         jLabel4.setText("Rol");
 
-        cbRol.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Recepcionista", "Médico", "Enfermero(a)", "Cajero", "Administrador" }));
+        cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Medico", "Enfermero(a)", "Cajero", "Administrador" }));
         cbRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbRolActionPerformed(evt);
@@ -188,7 +188,7 @@ public class DatosEmpleados extends javax.swing.JFrame {
 
     private void cbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRolActionPerformed
         // TODO add your handling code here:
-        if(this.cbRol.getSelectedItem().toString().equals("Médico")){
+        if(this.cbRol.getSelectedItem().toString().equals("Medico")){
             this.tfEspecialidad.setEnabled(true);
         }
         else
