@@ -21,7 +21,7 @@ public class Cita {
         this.codigoConsultorio = codigoConsultorio;
         this.paciente = paciente;
         this.medico = medico;
-        this.estado = "Pendiente";
+        this.estado = "Programada";
     }
     
     public void confirmar() {

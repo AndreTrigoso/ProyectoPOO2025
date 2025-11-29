@@ -146,6 +146,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
         miPacientes = new javax.swing.JMenuItem();
         miFactura = new javax.swing.JMenuItem();
         miCitas = new javax.swing.JMenuItem();
+        miCheck = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -327,6 +328,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
         });
         jMenu1.add(miCitas);
 
+        miCheck.setText("Check In");
+        miCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCheckActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miCheck);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Rol");
@@ -434,6 +443,12 @@ public class MenudeOpciones extends javax.swing.JFrame {
             // TODO add your handling code here:
     }//GEN-LAST:event_tfNombreActionPerformed
 
+    private void miCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCheckActionPerformed
+        // TODO add your handling code here:
+        Check ventana = new Check(gestorCitas, gestorPaciente);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_miCheckActionPerformed
+
     
 
     /**
@@ -476,6 +491,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem miCheck;
     private javax.swing.JMenuItem miCitas;
     private javax.swing.JMenuItem miConsultas;
     private javax.swing.JMenuItem miConsultorios;

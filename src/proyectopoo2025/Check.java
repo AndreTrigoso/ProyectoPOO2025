@@ -4,6 +4,13 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionCitas;
+import Controller.GestionConsulta;
+import Controller.GestionPaciente;
+import Model.Cita;
+import Model.Paciente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -12,11 +19,19 @@ public class Check extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Check.class.getName());
 
+    private GestionPaciente gestorPacientes;
+    private GestionCitas gestorCitas;
+    
+    
     /**
      * Creates new form Check
      */
-    public Check() {
+    public Check(GestionCitas gestorCitas, GestionPaciente gestorPacientes) {
         initComponents();
+        
+        this.gestorCitas = gestorCitas;
+        this.gestorPacientes = gestorPacientes;
+        cargarPacientes();
     }
 
     /**
@@ -31,9 +46,9 @@ public class Check extends javax.swing.JFrame {
         bAceptar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jbPaciente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jbEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,11 +68,11 @@ public class Check extends javax.swing.JFrame {
 
         jLabel1.setText("Paciente");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Estado:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Programada", "Confirmada", "En sala", "Atendida", "Cancelada", "No show" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,10 +91,9 @@ public class Check extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bCancelar))
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bCancelar)
+                    .addComponent(jbEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,12 +102,12 @@ public class Check extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(jbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bCancelar))
@@ -105,43 +119,58 @@ public class Check extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
         // TODO add your handling code here:
+        String dniSeleccionado = (String) jbPaciente.getSelectedItem();
+        String nuevoEstado = (String) jbEstado.getSelectedItem();
+
+        if (dniSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente.");
+            return;
+        }
+
+        Cita citaEncontrada = null;
+
+        
+        for (int i = 0; i < gestorCitas.getNumCitas(); i++) {
+            Cita c = gestorCitas.getCita(i);
+
+            if (c.getPaciente() != null && c.getPaciente().getDni().equals(dniSeleccionado)) {
+                citaEncontrada = c;
+                break;
+            }
+        }
+
+        if (citaEncontrada == null) {
+            JOptionPane.showMessageDialog(this, "El paciente no tiene cita registrada.");
+            return;
+        }
+
+        
+        citaEncontrada.setEstado(nuevoEstado);
+
+        JOptionPane.showMessageDialog(this, "Estado de la cita actualizado correctamente.");
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+    public void cargarPacientes() {
+        jbPaciente.removeAllItems();
+
+        for (int i = 0; i < gestorCitas.getNumCitas(); i++) {
+            Paciente p = gestorCitas.getCita(i).getPaciente();
+            jbPaciente.addItem(p.getDni());
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Check().setVisible(true));
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;
     private javax.swing.JButton bCancelar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> jbEstado;
+    private javax.swing.JComboBox<String> jbPaciente;
     // End of variables declaration//GEN-END:variables
 }
