@@ -4,19 +4,36 @@
  */
 package proyectopoo2025;
 
+import Controller.GestionCitas;
+import Controller.GestionConsulta;
+import Controller.GestionConsultorios;
+import Model.Cita;
+import Model.Consulta;
+import Model.GestionOrden;
+import Model.Orden;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
- * @author Usuario
+ * @author Aidan
  */
 public class Reportes extends javax.swing.JFrame {
+    private GestionConsulta gestorConsulta;
+    private GestionConsultorios gestorConsultorios;
+    private GestionCitas gestorCitas;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Reportes.class.getName());
-
     /**
      * Creates new form Reportes
      */
-    public Reportes() {
+    public Reportes(GestionConsulta gestorConsulta, 
+                GestionConsultorios gestorConsultorios,
+                GestionCitas gestorCitas) {
+        this.gestorConsulta = gestorConsulta;
+        this.gestorConsultorios = gestorConsultorios;
+        this.gestorCitas = gestorCitas;
         initComponents();
+        cargarDatosATabla();
     }
 
     /**
@@ -28,47 +45,294 @@ public class Reportes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtCantidadMonto1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtTipodeServicio = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtCantidadMontoC = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtMedico = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jtConsultorio = new javax.swing.JTable();
+        bRegresar = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jtCantidadMonto1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Cantidad", "Monto Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jtCantidadMonto1);
+
+        jtTipodeServicio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Tipo de Servicio"
+            }
+        ));
+        jScrollPane2.setViewportView(jtTipodeServicio);
+
+        jtCantidadMontoC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Cantidad de Consultas", "Cantidad de Facturas Emitidas"
+            }
+        ));
+        jScrollPane4.setViewportView(jtCantidadMontoC);
+
+        jtMedico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Medico"
+            }
+        ));
+        jScrollPane5.setViewportView(jtMedico);
+
+        jtConsultorio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Consultorios Disponibles", "Consultorios no Disponibles"
+            }
+        ));
+        jScrollPane6.setViewportView(jtConsultorio);
+
+        bRegresar.setText("Regresar");
+        bRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bRegresar)
+                        .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(bRegresar)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_bRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void cargarDatosATabla() {
+        //LAS PRIMERAS DOS TABLAS
+        DefaultTableModel modelo = (DefaultTableModel) jtCantidadMonto1.getModel();
+        modelo.setRowCount(0);
+
+        DefaultTableModel modeloServicios = (DefaultTableModel) jtTipodeServicio.getModel();
+        DefaultTableModel modeloCantMonto = (DefaultTableModel) jtCantidadMonto1.getModel();
+
+        modeloServicios.setRowCount(0);
+        modeloCantMonto.setRowCount(0);
+
+        int cantLab = 0, cantImg = 0, cantProc = 0;
+        double montoLab = 0, montoImg = 0, montoProc = 0;
+
+        for (int i = 0; i < gestorConsulta.getCantidad(); i++) {
+            Consulta c = gestorConsulta.getConsultas(i);
+            GestionOrden go = c.getGestionOrden();
+
+            for (int j = 0; j < go.getCantidadOrdenes(); j++) { //estoy recorriendo una matriz
+                Orden o = go.getOrdenes(j);
+
+                switch (o.getNombre().toLowerCase()) {
+                    case "laboratorio" -> {
+                        cantLab++;
+                        montoLab += o.getPrecio();
+                    }
+                    case "imagen" -> {
+                        cantImg++;
+                        montoImg += o.getPrecio();
+                    }
+                    case "procedimiento" -> {
+                        cantProc++;
+                        montoProc += o.getPrecio();
+                    }
                 }
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Reportes().setVisible(true));
     }
 
+        // Agregar filas alineadas
+        modeloServicios.addRow(new Object[]{"Laboratorio"});
+        modeloCantMonto.addRow(new Object[]{cantLab, montoLab});
+
+        modeloServicios.addRow(new Object[]{"Imagen"});
+        modeloCantMonto.addRow(new Object[]{cantImg, montoImg});
+
+        modeloServicios.addRow(new Object[]{"Procedimiento"});
+        modeloCantMonto.addRow(new Object[]{cantProc, montoProc});
+
+        
+        //Las tablas de consultorio
+        
+        
+        DefaultTableModel modeloConsultorios = (DefaultTableModel) jtConsultorio.getModel();
+        modeloConsultorios.setRowCount(0);
+
+        int disponibles = 0, noDisponibles = 0;
+
+        for (int i = 0; i < gestorConsultorios.getNumConsultorios(); i++) {
+            String estado = gestorConsultorios.getConsultorios(i).getEstado();
+
+            if (estado.equalsIgnoreCase("Disponible"))
+                disponibles++;
+            else
+                noDisponibles++;
+        }
+        
+        modeloConsultorios.addRow(new Object[]{disponibles, noDisponibles});
+
+
+        //Las tablas de medico: EXPLICACION -> SIEMPRE ANTES DE UNA CONSULTA TIENE QUE PROGRAMARSE UNA CITA PREVIA ENTONCES LA CANTIDAD
+        // DE CITAS ES LA MISMA QUE LA DE CONSULTAS DE LOS MEDICOS
+
+        DefaultTableModel modeloMedico = (DefaultTableModel) jtMedico.getModel();
+        DefaultTableModel modeloCantFact = (DefaultTableModel) jtCantidadMontoC.getModel();
+
+        modeloMedico.setRowCount(0);
+        modeloCantFact.setRowCount(0);
+
+        // Mapa: Médico → Cantidad de citas
+        java.util.HashMap<String, Integer> conteoMedicos = new java.util.HashMap<>();
+
+        for (int i = 0; i < gestorCitas.getNumCitas(); i++) {
+            Cita cita = gestorCitas.getCita(i);
+
+            if (cita != null && cita.getMedico() != null) {
+                String nombreMed = cita.getMedico().getApellidos();
+
+                conteoMedicos.put(nombreMed, 
+                    conteoMedicos.getOrDefault(nombreMed, 0) + 1
+                );
+        }
+    }
+
+    // Rellenar tablas alineadas
+        for (String medico : conteoMedicos.keySet()) {
+        int cantidad = conteoMedicos.get(medico);
+
+        modeloMedico.addRow(new Object[]{ medico });
+        modeloCantFact.addRow(new Object[]{ cantidad, cantidad }); 
+
+        }
+    }
+
+ 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtCantidadMonto1;
+    private javax.swing.JTable jtCantidadMontoC;
+    private javax.swing.JTable jtConsultorio;
+    private javax.swing.JTable jtMedico;
+    private javax.swing.JTable jtTipodeServicio;
     // End of variables declaration//GEN-END:variables
 }
