@@ -36,6 +36,8 @@ public class DatosCitas extends javax.swing.JFrame {
     this.gestorEmpleados = gestorEmpleados;
 
     initComponents();
+    
+    limpiarCampos();
 
     cargarPacientes();
     cargarMedicos();
@@ -185,6 +187,10 @@ public class DatosCitas extends javax.swing.JFrame {
             Paciente p = gestorPacientes.getPaciente(i);
             jbPaciente.addItem(p.getApellido());
         }
+    }
+    
+    private void limpiarCampos() {
+        tfCodigodeConsultorio.setText("                 ");
     }
     
     public void setDatos(Cita c, int indice) {

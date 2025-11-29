@@ -26,14 +26,11 @@ public class DatosOrden extends javax.swing.JFrame {
         this.ventanaConsulta = ventanaConsulta;
         initComponents();
 
-        // Ajuste de tamaño y limpieza de campos de texto
-        tfProcedimiento.setText("");
-        tfProcedimiento.setColumns(25);
-        tfProcedimiento.setPreferredSize(new java.awt.Dimension(260, tfProcedimiento.getPreferredSize().height));
-
-        tfPrecio.setText("");
-        tfPrecio.setColumns(10);
-        tfPrecio.setPreferredSize(new java.awt.Dimension(120, tfPrecio.getPreferredSize().height));
+        
+        limpiarCampos();
+        
+        
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,15 +111,15 @@ public class DatosOrden extends javax.swing.JFrame {
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfProcedimiento)
                             .addComponent(tfPrecio)
-                            .addComponent(jbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfProcedimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(bAceptar)
                         .addGap(84, 84, 84)
                         .addComponent(bCancelar)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +165,17 @@ public class DatosOrden extends javax.swing.JFrame {
                 // TODO add your handling code here:
             
         
+                
     }//GEN-LAST:event_tfProcedimientoActionPerformed
 
+    
+    private void limpiarCampos() {
+        tfProcedimiento.setText("                   ");
+        tfPrecio.setText("                  ");
+
+    }
+    
+    
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
     
     String tipo = jbTipo.getSelectedItem().toString();

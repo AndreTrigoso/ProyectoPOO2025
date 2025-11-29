@@ -41,12 +41,15 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     this.recetaActual = recetaActual;
 
     initComponents();
-    // Ajuste de tamaño y limpieza de campos de texto
-    tfMotivo.setText("");
+    
+    
+    
+    limpiarCampos();
+    
     tfMotivo.setColumns(20);
     tfMotivo.setPreferredSize(new java.awt.Dimension(200, tfMotivo.getPreferredSize().height));
 
-    tfPrecio.setText("");
+    
     tfPrecio.setColumns(10);
     tfPrecio.setPreferredSize(new java.awt.Dimension(120, tfPrecio.getPreferredSize().height));
 
@@ -77,6 +80,11 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     
 }
     
+    
+    private void limpiarCampos() {
+        tfMotivo.setText("          ");
+        tfPrecio.setText("          ");
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

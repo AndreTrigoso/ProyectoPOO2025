@@ -84,6 +84,12 @@ public class DatosEmpleados extends javax.swing.JFrame {
             }
         });
 
+        tfNombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombresActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Especialidad");
 
         jbAceptar.setText("Aceptar");
@@ -261,6 +267,10 @@ public class DatosEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void tfNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombresActionPerformed
 
     /**
      * @param args the command line arguments

@@ -38,9 +38,9 @@
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jbTipo" max="32767" attributes="0"/>
-                          <Component id="tfProcedimiento" max="32767" attributes="0"/>
                           <Component id="tfPrecio" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbEstado" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfProcedimiento" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -50,7 +50,7 @@
                       <Component id="bCancelar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="88" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

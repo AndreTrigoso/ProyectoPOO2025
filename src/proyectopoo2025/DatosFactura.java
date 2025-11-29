@@ -33,8 +33,11 @@ public class DatosFactura extends javax.swing.JFrame {
         this.ventanaGestorFactura = tabla;
 
         initComponents();
+        
+        limpiarCampos();
+        
         cargarConsulta(); 
-        tfNumero.setText("");  // limpia campo
+          // limpia campo
     }
 
     /**
@@ -150,6 +153,10 @@ public class DatosFactura extends javax.swing.JFrame {
             jbConsulta.addItem(c.getPaciente().getNombre()+ " " + c.getPaciente().getApellido());
         }
 
+    }
+    
+    private void limpiarCampos() {
+        tfNumero.setText("              ");
     }
     
     public void setDatos(Factura f, int indice) {

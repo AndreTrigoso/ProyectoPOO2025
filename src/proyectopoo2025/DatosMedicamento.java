@@ -28,6 +28,8 @@ public class DatosMedicamento extends javax.swing.JFrame {
             this.ventanaConsulta = ventanaConsulta;
             initComponents();
             
+            limpiarCampos();
+            
     }
 
     public void setDatos(Medicamento m, int indice){
@@ -204,11 +206,13 @@ public class DatosMedicamento extends javax.swing.JFrame {
     }
 
     
-    tfNombre.setText("");
-    tfMarca.setText("");
-    tfDosis.setText("");
-    tfFrecuencia.setText("");
-    tfDuracion.setText("");
+    
+    
+    tfNombre.setText("          ");
+    tfMarca.setText("           ");
+    tfDosis.setText("           ");
+    tfFrecuencia.setText("          ");
+    tfDuracion.setText("            ");
 
    
     GestorReceta ventana = new GestorReceta(gestor,ventanaConsulta);
@@ -216,6 +220,15 @@ public class DatosMedicamento extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_bAceptarActionPerformed
 
+    private void limpiarCampos() {
+        tfNombre.setText("      ");
+        tfMarca.setText("       ");
+        tfDosis.setText("       ");
+        tfFrecuencia.setText("      ");
+        tfDuracion.setText("        ");
+    }
+    
+    
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();

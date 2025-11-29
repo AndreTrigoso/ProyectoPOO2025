@@ -183,8 +183,8 @@ public class DatosConsultorio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Consultorio modificado correctamente");
         }
         
-        tfCodigo.setText(" ");
-        tfEspecialidad.setText(" ");
+        tfCodigo.setText("          ");
+        tfEspecialidad.setText("            ");
         cbEstado.setSelectedIndex(0);
         
         GestorConsultorios tabla = new GestorConsultorios(gestor);
