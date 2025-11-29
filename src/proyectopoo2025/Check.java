@@ -119,10 +119,10 @@ public class Check extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
         // TODO add your handling code here:
-        String dniSeleccionado = (String) jbPaciente.getSelectedItem();
+        String apellidoSeleccionado = (String) jbPaciente.getSelectedItem();
         String nuevoEstado = (String) jbEstado.getSelectedItem();
 
-        if (dniSeleccionado == null) {
+        if (apellidoSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Seleccione un paciente.");
             return;
         }
@@ -133,7 +133,7 @@ public class Check extends javax.swing.JFrame {
         for (int i = 0; i < gestorCitas.getNumCitas(); i++) {
             Cita c = gestorCitas.getCita(i);
 
-            if (c.getPaciente() != null && c.getPaciente().getDni().equals(dniSeleccionado)) {
+            if (c.getPaciente() != null && c.getPaciente().getApellido().equalsIgnoreCase(apellidoSeleccionado)) {
                 citaEncontrada = c;
                 break;
             }
@@ -161,7 +161,7 @@ public class Check extends javax.swing.JFrame {
 
         for (int i = 0; i < gestorCitas.getNumCitas(); i++) {
             Paciente p = gestorCitas.getCita(i).getPaciente();
-            jbPaciente.addItem(p.getDni());
+            jbPaciente.addItem(p.getApellido());
         }
     }
     

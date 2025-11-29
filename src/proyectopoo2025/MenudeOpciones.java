@@ -40,7 +40,14 @@ public class MenudeOpciones extends javax.swing.JFrame {
     private GestionPaciente gestorPaciente;
     private GestionOrden gestorOrden;
     
-    public MenudeOpciones(Usuario user) {
+    public MenudeOpciones(Usuario user, 
+            GestionEmpleados gestorEmpleados,
+            GestionCitas gestorCitas,
+            GestionConsultorios gestorConsultorios,
+            GestionConsulta gestorConsulta,
+            GestionFactura gestorFactura,
+            GestionPaciente gestorPaciente,
+            GestionOrden gestorOrden) {
         initComponents();
         panelUsuario.setBackground(new java.awt.Color(230, 240, 255));
         tfNombre.setEditable(false);
@@ -50,18 +57,17 @@ public class MenudeOpciones extends javax.swing.JFrame {
         tfCorreo.setEditable(false);
         tfTelefono.setEditable(false);
         tfEspecialidad.setEditable(false);
-        
-        this.usuarioLogeado = user;
-        cargarDatosEnPanel();
 
-        this.gestorEmpleados = new GestionEmpleados();
-        this.gestorPaciente = new GestionPaciente();
-        this.gestorCitas = new GestionCitas();
-        this.gestorConsultorios = new GestionConsultorios();
-        this.gestorConsulta = new GestionConsulta();
-        //this.gestorConsulta.setDependencias(gestorPaciente, gestorEmpleados);
-        this.gestorFactura = new GestionFactura();
-        this.gestorOrden = new GestionOrden();
+        this.usuarioLogeado = user;
+        this.gestorEmpleados = gestorEmpleados;
+        this.gestorCitas = gestorCitas;
+        this.gestorConsultorios = gestorConsultorios;
+        this.gestorConsulta = gestorConsulta;
+        this.gestorFactura = gestorFactura;
+        this.gestorPaciente = gestorPaciente;
+        this.gestorOrden = gestorOrden;
+
+        cargarDatosEnPanel();
         jMenuItem1.setText(user.getRoles());  
 
         if (user != null) {
@@ -109,6 +115,18 @@ public class MenudeOpciones extends javax.swing.JFrame {
             }
         }
     }
+
+    public MenudeOpciones(Usuario user) {
+        this(user,
+             new GestionEmpleados(),
+             new GestionCitas(),
+             new GestionConsultorios(),
+             new GestionConsulta(),
+             new GestionFactura(),
+             new GestionPaciente(),
+             new GestionOrden());
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

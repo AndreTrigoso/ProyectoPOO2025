@@ -5,6 +5,13 @@
 package proyectopoo2025;
 
 import Controller.GestorUsuarios;
+import Controller.GestionCitas;
+import Controller.GestionConsulta;
+import Controller.GestionConsultorios;
+import Controller.GestionEmpleados;
+import Controller.GestionFactura;
+import Controller.GestionPaciente;
+import Model.GestionOrden;
 import Model.Administrador;
 import Model.Cajero;
 import Model.Empleado;
@@ -23,6 +30,15 @@ public class Login extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
     
     private GestorUsuarios usuarios;
+
+    private GestionEmpleados gestorEmpleados;
+    private GestionPaciente gestorPaciente;
+    private GestionCitas gestorCitas;
+    private GestionConsultorios gestorConsultorios;
+    private GestionConsulta gestorConsulta;
+    private GestionFactura gestorFactura;
+    private GestionOrden gestorOrden;
+
     
 
     /**
@@ -31,6 +47,15 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         usuarios = new GestorUsuarios();
+
+        gestorEmpleados = new GestionEmpleados();
+        gestorPaciente = new GestionPaciente();
+        gestorCitas = new GestionCitas();
+        gestorConsultorios = new GestionConsultorios();
+        gestorConsulta = new GestionConsulta();
+        gestorFactura = new GestionFactura();
+        gestorOrden = new GestionOrden();
+
         
         Empleado a1 = new Administrador("70711841", "Diego Alexandro", "Aguayo Arrieta", "Administrador", " ", "962244620", "daguayo@gmail.com");
         usuarios.agregarUsuario("ADM1", "2706", "Administrador", a1);
@@ -132,7 +157,7 @@ public class Login extends javax.swing.JFrame {
         
         String rol = u.getRoles();
         
-        MenudeOpciones menu = new MenudeOpciones(u);
+        MenudeOpciones menu = new MenudeOpciones(u, gestorEmpleados, gestorCitas, gestorConsultorios, gestorConsulta, gestorFactura, gestorPaciente, gestorOrden);
         menu.setVisible(true);
         
         this.dispose();
