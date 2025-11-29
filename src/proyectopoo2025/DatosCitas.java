@@ -227,65 +227,59 @@ public class DatosCitas extends javax.swing.JFrame {
         String hora = jbHora.getSelectedItem().toString();
         String codigoConsultorio = tfCodigodeConsultorio.getText();
 
-        if (pacienteDni.isEmpty() || medicoDni.isEmpty() || modalidad.isEmpty() ||
-            fecha.isEmpty() || hora.isEmpty() || codigoConsultorio.isEmpty()) {
+            if (pacienteDni.isEmpty() || medicoDni.isEmpty() || modalidad.isEmpty() ||
+        fecha.isEmpty() || hora.isEmpty() || codigoConsultorio.isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, 
-                    "Complete todos los campos obligatorios");
-            return;
-        }
-        
-        Paciente pac = (Paciente) jbPaciente.getSelectedItem();
-        if (pac == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione un paciente");
-            return;
-        }
-        
-        Medico med = (Medico) jbMedico.getSelectedItem();
-        if (med == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione un médico");
-            return;
-        }
-        
-        Cita c = new Cita(codigoConsultorio, fecha, hora, modalidad, pac, med);
-        gestorCitas.agregarCita(c);
+        JOptionPane.showMessageDialog(this, 
+                "Complete todos los campos obligatorios");
+        return;
+    }
 
-        JOptionPane.showMessageDialog(this, "Cita registrada correctamente");
+    // Buscar el paciente por nombre completo en el gestor
+    Paciente pac = null;
+    for (int i = 0; i < gestorPacientes.getNumPacientes(); i++) {
+        Paciente p = gestorPacientes.getPaciente(i);
+        String nombreCompleto = p.getNombre() + " " + p.getApellido();
+        if (nombreCompleto.equals(pacienteDni)) {
+            pac = p;
+            break;
+        }
+    }
+    if (pac == null) {
+        JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado");
+        return;
+    }
 
-        this.dispose();
-    }//GEN-LAST:event_jbAgregarActionPerformed
+    // Buscar el médico por nombre completo en el gestor de empleados
+    Medico med = null;
+    for (int i = 0; i < gestorEmpleados.getNroEmpleados(); i++) {
+        Empleado e = gestorEmpleados.getEmpleados(i);
+        if (e instanceof Medico) {
+            String nombreCompletoMed = e.getNombres() + " " + e.getApellidos();
+            if (nombreCompletoMed.equals(medicoDni)) {
+                med = (Medico) e;
+                break;
+            }
+        }
+    }
+    if (med == null) {
+        JOptionPane.showMessageDialog(this, "No se encontró el médico seleccionado");
+        return;
+    }
+
+    Cita c = new Cita(codigoConsultorio, fecha, hora, modalidad, pac, med);
+    gestorCitas.agregarCita(c);
+
+    JOptionPane.showMessageDialog(this, "Cita registrada correctamente");
+
+    this.dispose();
+}//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        GestionEmpleados gestor = new GestionEmpleados();
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-    // Pasar los gestores reales
-    new DatosCitas(new GestionCitas(), new GestionPaciente(), new GestionEmpleados()).setVisible(true);});
-        
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
