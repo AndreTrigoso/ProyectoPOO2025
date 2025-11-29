@@ -44,17 +44,19 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(GestionEmpleados ge, GestionPaciente gp, GestionCitas gc,
+             GestionConsultorios gco, GestionConsulta gcon,
+             GestionFactura gf, GestionOrden go) {
         initComponents();
         usuarios = new GestorUsuarios();
 
-        gestorEmpleados = new GestionEmpleados();
-        gestorPaciente = new GestionPaciente();
-        gestorCitas = new GestionCitas();
-        gestorConsultorios = new GestionConsultorios();
-        gestorConsulta = new GestionConsulta();
-        gestorFactura = new GestionFactura();
-        gestorOrden = new GestionOrden();
+        this.gestorEmpleados = ge;
+        this.gestorPaciente = gp;
+        this.gestorCitas = gc;
+        this.gestorConsultorios = gco;
+        this.gestorConsulta = gcon;
+        this.gestorFactura = gf;
+        this.gestorOrden = go;
 
         
         Empleado a1 = new Administrador("70711841", "Diego Alexandro", "Aguayo Arrieta", "Administrador", " ", "962244620", "daguayo@gmail.com");
@@ -65,10 +67,10 @@ public class Login extends javax.swing.JFrame {
         usuarios.agregarUsuario("ENF1", "2009", "Enfermero", e1);
         
         Empleado r1 = new Recepcionista("69485623", "Nicolas Mariano", "Uceda Cano", "Recepcionista", " ", "945612304", "nuceda@gmail.com");
-        usuarios.agregarUsuario("REC1", "0301", "Recepcionista", r1);
+        usuarios.agregarUsuario("REC1", "2010", "Recepcionista", r1);
         
         Empleado c1 = new Cajero("74569812", "Aidan Adrian", "Cornejo Canicoba", "Cajero", " ", "93214569", "acornejo@gmail.com");
-        usuarios.agregarUsuario("CAJ1", "1310", "Cajero", c1);
+        usuarios.agregarUsuario("CAJ1", "2011", "Cajero", c1);
         
         Empleado m1 = new Medico("78452319", "Arantxa Angelica", "Ramirez Puccio", "Médico", "Pediatra", "9478622340", "aramirez@gmail.com");
         usuarios.agregarUsuario("MED1", "2004", "Médico", m1);
@@ -185,7 +187,15 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        GestionEmpleados ge = new GestionEmpleados();
+        GestionPaciente gp = new GestionPaciente();
+        GestionCitas gc = new GestionCitas();
+        GestionConsultorios gco = new GestionConsultorios();
+        GestionConsulta gcon = new GestionConsulta();
+        GestionFactura gf = new GestionFactura();
+        GestionOrden go = new GestionOrden();
+        
+        java.awt.EventQueue.invokeLater(() -> new Login(ge, gp, gc, gco, gcon, gf, go).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

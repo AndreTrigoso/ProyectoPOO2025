@@ -92,7 +92,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
                     miPacientes.setEnabled(true);
                     miFactura.setEnabled(false);
                     miCitas.setEnabled(true);
-                    miCheck.setEnabled(false);
+                    miCheck.setEnabled(true);
                     break;
 
                 case "Medico":
@@ -131,16 +131,6 @@ public class MenudeOpciones extends javax.swing.JFrame {
         }
     }
 
-    public MenudeOpciones(Usuario user) {
-        this(user,
-             new GestionEmpleados(),
-             new GestionCitas(),
-             new GestionConsultorios(),
-             new GestionConsulta(),
-             new GestionFactura(),
-             new GestionPaciente(),
-             new GestionOrden());
-    }
 
 
     /**
@@ -496,37 +486,22 @@ public class MenudeOpciones extends javax.swing.JFrame {
 
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
         // TODO add your handling code here:
-        Login ventanaLogin = new Login();  
-        ventanaLogin.setVisible(true);     
-        this.dispose(); 
+        Login ventanaLogin = new Login(
+        gestorEmpleados,
+        gestorPaciente,
+        gestorCitas,
+        gestorConsultorios,
+        gestorConsulta,
+        gestorFactura,
+        gestorOrden
+    );
+    ventanaLogin.setVisible(true);
+    this.dispose(); 
     }//GEN-LAST:event_bCerrarActionPerformed
 
     
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MenudeOpciones(null).setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
