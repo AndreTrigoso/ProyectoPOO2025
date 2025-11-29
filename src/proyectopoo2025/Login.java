@@ -73,7 +73,7 @@ public class Login extends javax.swing.JFrame {
         usuarios.agregarUsuario("CAJ1", "2011", "Cajero", c1);
         
         Empleado m1 = new Medico("78452319", "Arantxa Angelica", "Ramirez Puccio", "Médico", "Pediatra", "9478622340", "aramirez@gmail.com");
-        usuarios.agregarUsuario("MED1", "2004", "Médico", m1);
+        usuarios.agregarUsuario("MED1", "2004", "Medico", m1);
         
     }
 
