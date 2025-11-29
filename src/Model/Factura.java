@@ -3,13 +3,12 @@ package Model;
 public class Factura {
     private String numero;
     private String descripcion;
-    private String monto;
-    private double calculo;
+    private double monto;
 
-    public Factura(String numero, String descripcion, double total) {
+    public Factura(String numero, String descripcion, double monto) {
         this.numero = numero;
         this.descripcion = descripcion;
-        this.monto = "" + this.calculo;
+        this.monto = monto;
     }
 
     public String getNumero() {
@@ -28,11 +27,11 @@ public class Factura {
         this.descripcion = descripcion;
     }
 
-    public String getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(String monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
     

@@ -41,11 +41,11 @@ public class GestionFactura {
         }
     }
     
-    public void eliminarFactura() {
-        for (int i = 0; i < cantidad - 1; i++) {
-            facturas[i] = facturas[i + 1];
+    public void eliminarFactura(int indice) {
+        if (indice < 0 || indice >= cantidad) return;
+        for (int i = indice; i < cantidad - 1; i++) {
+            facturas[i] = facturas[i+1];
         }
-
         facturas[cantidad - 1] = null;
         cantidad--;
     }
@@ -59,7 +59,7 @@ public class GestionFactura {
         return false;
     }
     
-    public void modificarFactura(int fila, String numero, String descripcion, String monto) {
+    public void modificarFactura(int fila, String numero, String descripcion, double monto) {
         Factura f = facturas[fila];
         f.setNumero(numero);
         f.setDescripcion(descripcion);

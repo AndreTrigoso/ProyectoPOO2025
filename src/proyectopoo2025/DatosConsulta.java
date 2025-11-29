@@ -41,6 +41,15 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     this.recetaActual = recetaActual;
 
     initComponents();
+    // Ajuste de tamaño y limpieza de campos de texto
+    tfMotivo.setText("");
+    tfMotivo.setColumns(20);
+    tfMotivo.setPreferredSize(new java.awt.Dimension(200, tfMotivo.getPreferredSize().height));
+
+    tfPrecio.setText("");
+    tfPrecio.setColumns(10);
+    tfPrecio.setPreferredSize(new java.awt.Dimension(120, tfPrecio.getPreferredSize().height));
+
     cargarPacientes();
 }
     
@@ -57,14 +66,14 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
     
     
     public void actualizarArchivos() {
-    int i = jbPaciente.getSelectedIndex();
-    if (i == -1) return;
+        int i = jbPaciente.getSelectedIndex();
+        if (i == -1) return;
 
-    Paciente p = gestorPacientes.getPaciente(i);
+        Paciente p = gestorPacientes.getPaciente(i);
 
-    jLabel8.setText("A-" + p.getApellido() + ".pdf");  
-    jLabel7.setText("S-" + p.getApellido() + ".pdf");
-    lExamen.setText("E-" + p.getApellido() + ".pdf");
+        jLabel8.setText("A-" + p.getApellido() + ".pdf");  
+        jLabel7.setText("S-" + p.getApellido() + ".pdf");
+        lExamen.setText("E-" + p.getApellido() + ".pdf");
     
 }
     
@@ -124,6 +133,11 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         });
 
         jbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jbPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPacienteActionPerformed(evt);
+            }
+        });
 
         bReceta.setText("Agregar");
         bReceta.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +248,6 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8))
@@ -345,6 +358,10 @@ public DatosConsulta(GestionConsulta gestor, GestionPaciente gestorPaciente, Ges
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void jbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbPacienteActionPerformed
 
     /**
      * @param args the command line arguments

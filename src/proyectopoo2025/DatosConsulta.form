@@ -116,7 +116,6 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -218,6 +217,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPacienteActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

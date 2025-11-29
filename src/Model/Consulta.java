@@ -42,9 +42,7 @@ public class Consulta {
         this.motivo = motivo;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
+    
 
     public void setPrecio(double precio) {
         this.precio = precio;
@@ -120,4 +118,23 @@ public class Consulta {
     
     
     
+
+
+    public double getTotalConsulta() {
+        if (orden == null) {
+            return precio;
+        }
+        return precio + orden.getTotalPrecios();
+    }
+
+
+
+    // Método modificado: precio total = precio base + órdenes
+    public double getPrecio() {
+        if (orden == null) {
+            return precio;
+        }
+        return precio + orden.getTotalPrecios();
+    }
+
 }

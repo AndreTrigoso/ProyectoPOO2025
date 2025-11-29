@@ -25,6 +25,15 @@ public class DatosOrden extends javax.swing.JFrame {
         this.gestor = gestor;
         this.ventanaConsulta = ventanaConsulta;
         initComponents();
+
+        // Ajuste de tamaño y limpieza de campos de texto
+        tfProcedimiento.setText("");
+        tfProcedimiento.setColumns(25);
+        tfProcedimiento.setPreferredSize(new java.awt.Dimension(260, tfProcedimiento.getPreferredSize().height));
+
+        tfPrecio.setText("");
+        tfPrecio.setColumns(10);
+        tfPrecio.setPreferredSize(new java.awt.Dimension(120, tfPrecio.getPreferredSize().height));
     }
     /**
      * This method is called from within the constructor to initialize the form.

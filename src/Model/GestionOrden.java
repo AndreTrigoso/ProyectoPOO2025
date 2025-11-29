@@ -49,6 +49,19 @@ public class GestionOrden {
             o.setDescripcion(descripcion);
             o.setEstado(estado);
         }
+
+
+    public double getTotalPrecios() {
+        double total = 0;
+        for (int i = 0; i < cantidad; i++) {
+            Orden o = ordenes[i];
+            if (o != null) {
+                total += o.getPrecio();
+            }
+        }
+        return total;
+    }
+
 }
 
 

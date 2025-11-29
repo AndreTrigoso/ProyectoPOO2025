@@ -63,13 +63,13 @@ public class GestorPacientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "DNI", "Fecha Nacimiento", "Teléfono", "Teléfono Emergencia", "Contacto Emergencia"
+                "Nombre", "Apellido", "DNI", "Fecha Nacimiento", "Género", "Teléfono", "Teléfono Emergencia", "Contacto Emergencia"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -108,14 +108,13 @@ public class GestorPacientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonAgregar)
                             .addComponent(botonModificar)
                             .addComponent(botonEliminar))
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bGuardar))))
@@ -206,14 +205,16 @@ public class GestorPacientes extends javax.swing.JFrame {
             Paciente p = gestor.getPacientes()[i];
 
             modelo.addRow(new Object[]{
-                p.getDni(),
+                
                 p.getNombre(),
                 p.getApellido(),
+                p.getDni(),
                 p.getFechaNacimiento(),
                 p.getSexo(),
                 p.getTelefono(),
-                p.getContactoEmergencia(),
-                p.getTelefonoEmergencia()
+                p.getTelefonoEmergencia(),
+                p.getContactoEmergencia()
+                
             });
         }
     }

@@ -393,7 +393,7 @@ public class MenudeOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_miEmpleadosActionPerformed
 
     private void miReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miReportesActionPerformed
-        Reportes ventana = new Reportes(gestorConsultorios, gestorConsulta, gestorFactura, gestorOrden);
+        Reportes ventana = new Reportes();
         ventana.setVisible(true);
     }//GEN-LAST:event_miReportesActionPerformed
 

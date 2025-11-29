@@ -188,15 +188,16 @@ public class DatosCitas extends javax.swing.JFrame {
     }
     
     public void setDatos(Cita c, int indice) {
-    this.indiceModificar = indice;
+        
+        this.indiceModificar = indice;
 
-    jbFecha.setSelectedItem(c.getFecha());
-    jbHora.setSelectedItem(c.getHora());
-    jbPaciente.setSelectedItem(c.getPaciente().getApellido());
-    jbMedico.setSelectedItem(c.getMedico().getApellidos());
-    jbModalidad.setSelectedItem(c.getModalidad());
-    tfCodigodeConsultorio.setText(c.getCodigoConsultorio());
-}
+        jbFecha.setSelectedItem(c.getFecha());
+        jbHora.setSelectedItem(c.getHora());
+        jbPaciente.setSelectedItem(c.getPaciente().getApellido());
+        jbMedico.setSelectedItem(c.getMedico().getApellidos());
+        jbModalidad.setSelectedItem(c.getModalidad());
+        tfCodigodeConsultorio.setText(c.getCodigoConsultorio());
+    }
     
     public void cargarMedicos() {
     jbMedico.removeAllItems();

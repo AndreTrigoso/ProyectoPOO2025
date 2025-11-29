@@ -155,30 +155,45 @@ public class GestorFactura extends javax.swing.JFrame {
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         // TODO add your handling code here:
-        DatosFactura ventana = new DatosFactura(gestorFactura, gestorOrden, gestorConsulta);
+        DatosFactura ventana = new DatosFactura(gestorFactura, gestorConsulta, this);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+    
+        int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una factura");
+            return;
+        }
 
-
-        int confirmar = JOptionPane.showConfirmDialog(null,
-                "¿Desea eliminar esta factura?", "Confirmar",
-                JOptionPane.YES_NO_OPTION);
+        int confirmar = JOptionPane.showConfirmDialog(
+            null,
+            "¿Desea eliminar esta factura?",
+            "Confirmar",
+            JOptionPane.YES_NO_OPTION
+        );
 
         if (confirmar == JOptionPane.YES_OPTION) {
-            gestorFactura.eliminarFactura();
+            gestorFactura.eliminarFactura(fila);
             cargarDatosATabla();
-}
+        }
+
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
+
         int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una factura");
+            return;
+        }
+
         Factura f = gestorFactura.getFacturas(fila);
 
-        DatosFactura ventana = new DatosFactura(gestorFactura, gestorOrden, gestorConsulta);
+        DatosFactura ventana = new DatosFactura(gestorFactura, gestorConsulta, this);
         ventana.setDatos(f, fila);
         ventana.setVisible(true);
         this.dispose();
