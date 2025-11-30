@@ -129,7 +129,6 @@ public class Consulta {
 
 
 
-    // Método modificado: precio total = precio base + órdenes
     public double getPrecio() {
         if (orden == null) {
             return precio;
