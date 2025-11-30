@@ -233,7 +233,7 @@ public class Reportes extends javax.swing.JFrame {
             Consulta c = gestorConsulta.getConsultas(i);
             GestionOrden go = c.getGestionOrden();
 
-            for (int j = 0; j < go.getCantidadOrdenes(); j++) { //estoy recorriendo una matriz
+            for (int j = 0; j < go.getCantidadOrdenes(); j++) { 
                 Orden o = go.getOrdenes(j);
 
                 switch (o.getNombre().toLowerCase()) {
